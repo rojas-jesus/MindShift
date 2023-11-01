@@ -6,7 +6,15 @@ class Thought(models.Model):
     advantages = models.TextField(null = True, blank = True)
     disadvantages = models.TextField(null = True, blank = True)
 
-class State(models.Model):
-    date = models.DateTimeField()
+class ThoughtDate(models.Model):
+    timestamp = models.DateTimeField()
     duration = models.PositiveSmallIntegerField()
     thought = models.ForeignKey(Thought, on_delete=models.SET_NULL, null=True)
+
+
+# class State(models.Model):
+#    date = models.DateTimeField()
+#    duration = models.PositiveSmallIntegerField()
+#    thought = models.ForeignKey(Thought, on_delete=models.SET_NULL, null=True)
+
+
