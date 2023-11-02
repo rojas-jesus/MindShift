@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import Home, ThoughtsList, CreateThought, CreateThoughtDate 
+from .views import Home, ThoughtsList, CreateThought, CreateThoughtDate, MostRelevantThoughts
 
 
 urlpatterns = [
@@ -7,4 +7,5 @@ urlpatterns = [
     path("thoughtslist/", ThoughtsList, name = "ThoughtsList"),
     path("createthought/", CreateThought.as_view(), name = "CreateThought"),
     path("createthoughtdate/", CreateThoughtDate.as_view(), name = "CreateThoughtDate"),
+    path("mostrelevantthoughts/", MostRelevantThoughts, name = "MostRelevantThoughts"),
 ]

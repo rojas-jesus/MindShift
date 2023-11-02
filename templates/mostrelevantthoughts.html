@@ -1,0 +1,22 @@
+<div class="card-body">
+	<table class="table">
+		<thead>
+
+			<tr>
+				<th scope="col" >Thought</th>
+				<th scope="col" >Count</th>
+			</tr>
+
+		</thead>
+		<tbody>
+
+			{% for x in  thoughts_dates_grouped %}
+			<tr>
+				<td> {{ x.thought }} </td>
+				<td> {{ x.entries }} </td>
+			</tr>
+			{% endfor %}
+
+		</tbody>
+	</table>
+</div>
