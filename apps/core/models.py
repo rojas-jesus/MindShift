@@ -7,14 +7,42 @@ EMOTION_CHOICES = [
     ("angry", "Angry"),
 ]
 
+EMOTION_INTENSITY = [
+    (None, "No Intensity"),
+    ("low", "Low"),
+    ("medium", "Medium"),
+    ("high", "High"),
+    ("severe", "severe"),
+]
+
+THOUGHT_INTENSITY = [
+    (None, "No Intensity"),
+    ("low", "Low"),
+    ("medium", "Medium"),
+    ("high", "High"),
+    ("severe", "Severe"),
+]
+
 
 class Thought(models.Model):
     name = models.CharField(max_length=150)
+    thought_intensity = models.CharField(
+        max_length=20,
+        choices=THOUGHT_INTENSITY, 
+        null=True, 
+        blank=True,
+        verbose_name="Thought Intensity",
+    )
     description = models.TextField()
     advantages = models.TextField(null=True, blank=True)
     disadvantages = models.TextField(null=True, blank=True)
-    emotion = models.CharField(
-        max_length=20, choices=EMOTION_CHOICES, null=True, blank=True
+    emotion = models.CharField(max_length=20,choices=EMOTION_CHOICES, null=True, blank=True)
+    emotion_intensity = models.CharField(
+        max_length=20,
+        choices=EMOTION_INTENSITY,
+        null=True,
+        blank=True,
+        verbose_name="Emotion Intensity",
     )
 
 
