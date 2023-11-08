@@ -1,4 +1,10 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block head_extra %}
+<link rel="stylesheet" href="{% static 'lib/DataTables/datatables.css' %}" />
+<script src="{% static 'lib/DataTables/datatables.js' %}"></script>
+{% endblock %}
 
 
 {% block body %}
@@ -41,7 +47,7 @@
 
 			<main>
 				<div class="card-body">
-					<table class="table">
+					<table class="table" id="example">
 						<thead>
 							<tr>
 								<th scope="col" class="text-bg-dark" style="width:5%;">Id</th>
@@ -69,5 +75,12 @@
 					</table>
 				</div>
 			</main>
+
+
+			<script>
+				document.addEventListener('DOMContentLoaded', function () {
+					let table = new DataTable('#example');
+				});
+			</script>
 </body>
 {% endblock %}
