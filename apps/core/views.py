@@ -10,27 +10,27 @@ from django.db.models import Count
 
 
 def Home(request):
-    return render(request, "home.html")
+    return render(request, "core/home.html")
 
 
 def ThoughtsList(request):
     thoughts_list = Thought.objects.all()
 
     context = {"thought_list": thoughts_list}
-    return render(request, "thoughtslist.html", context)
+    return render(request, "core/thoughtslist.html", context)
 
 
 class CreateThought(CreateView):
     model = Thought
     form_class = CreateThoughtForm
-    template_name = "createthought.html"
+    template_name = "core/createthought.html"
     success_url = reverse_lazy("ThoughtsList")
 
 
 class CreateThoughtDate(CreateView):
     model = ThoughtDate
     form_class = CreateThoughtDateForm
-    template_name = "createthoughtdate.html"
+    template_name = "core/createthoughtdate.html"
     success_url = reverse_lazy("Home")  # TODO: Change the "Home" URL to another appropiate to redirect after a successful operation.
 
 
@@ -52,4 +52,4 @@ def MostRelevantThoughts(request):
         "thoughts_dates_last_thirty_days": thoughts_dates_last_thirty_days,
         "thoughts_dates_grouped": thoughts_dates_grouped,
     }
-    return render(request, "mostrelevantthoughts.html", context)
+    return render(request, "core/mostrelevantthoughts.html", context)
