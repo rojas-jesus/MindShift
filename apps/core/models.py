@@ -33,10 +33,16 @@ class Thought(models.Model):
         blank=True,
         verbose_name="Thought Intensity",
     )
-    description = models.TextField()
-    advantages = models.TextField(null=True, blank=True)
-    disadvantages = models.TextField(null=True, blank=True)
-    emotion = models.CharField(max_length=20,choices=EMOTION_CHOICES, null=True, blank=True)
+    description = models.TextField(verbose_name="Description")
+    advantages = models.TextField(null=True, blank=True, verbose_name="Advantages")
+    disadvantages = models.TextField(null=True, blank=True, verbose_name="Disadvantages")
+    emotion = models.CharField(
+        max_length=20,
+        choices=EMOTION_CHOICES,
+        null=True,
+        blank=True,
+        verbose_name="Emotion"
+    )
     emotion_intensity = models.CharField(
         max_length=20,
         choices=EMOTION_INTENSITY,
@@ -52,7 +58,3 @@ class ThoughtDate(models.Model):
     thought = models.ForeignKey(Thought, on_delete=models.SET_NULL, null=True)
 
 
-# class State(models.Model):
-#    date = models.DateTimeField()
-#    duration = models.PositiveSmallIntegerField()
-#    thought = models.ForeignKey(Thought, on_delete=models.SET_NULL, null=True)
