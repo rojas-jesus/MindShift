@@ -2,32 +2,39 @@
 
 {% block content %}
 <form method="post" action="." >
-	<div class="card col-md-6 mx-auto" >
+	<div class="row pt-3 pb-3">
+		<div class="col-6 mx-auto">
+			<div class="card text-dark bg-light" >
+				<div class="card-header">
+					<h5 class="card-title "> Create Thought</h5>	
+				</div>
+				<!-- /. card-header -->
 
-		<div class="card-header text-bg-primary ">
-			<h3 class="card-title "> Create Thought</h3>	
-		</div>
-		<!-- /. card-header -->
+				<div class="card-body">
+					<div class="form-group">
+						{% csrf_token %}
+						{% for item in form %}
+						<div class="mb-3">
+							{% if item.field.required == True %}
+							<label class="form-label"> <b>{{ item.label }}</b> <span style="color:red;"> * </span></label>
+							{% else %}
+							<label class="form-label"> <b>{{ item.label }}</b> </label>
+							{% endif %}
+							{{ item }}
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+				<!-- /. card-body -->
 
-		<div class="card-body">
-			<div class="form-group">
-				{% csrf_token %}
-				{% for item in form %}
-					{% if item.field.required == True %}
-						<label>{{ item.label }} <span style="color:red;"> * </span>: </label>
-					{% else %}
-						<label>{{ item.label }} : </label>
-					{% endif %}
-					{{ item }}
-				{% endfor %}
+				<div class="card-footer">
+					<div class="d-grid gap-2 col-10 mx-auto">
+						<button type "submit" class="btn btn-primary"> Save </button>
+					</div>
+				</div>
+				<!-- card-footer -->
 			</div>
 		</div>
-		<!-- /. card-body -->
-
-		<div class="card-footer">
-			<button type "submit" class="btn btn-primary"> Save </button>
-		</div>
-		<!-- card-footer -->
 	</div>
 </form>
 {% endblock %}
