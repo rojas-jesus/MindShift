@@ -1,11 +1,13 @@
-<body>
-		<form method="post" action="." >
-			{% csrf_token %}
-			{{form.as_p}}
+{% extends "base/form.html" %}
 
-			<button type "submit">
-				 Save
-			</button>
-		</form>
+{% block head_extra %}
+	<title>Create Thought Date</title>
+{% endblock %}
 
-</body>
+{% block card_title %}
+	Create Thought Date
+{% endblock %}
+
+{% block cancel_button_url %}
+	{% url 'ThoughtsList' %}
+{% endblock %}

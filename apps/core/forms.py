@@ -52,5 +52,18 @@ class CreateThoughtDateForm(forms.ModelForm):
         model = ThoughtDate
         fields = "__all__"
         widgets = {
-            "timestamp": forms.widgets.DateTimeInput(attrs={"type": "datetime-local"})
+            "timestamp": forms.widgets.DateTimeInput(
+                attrs={
+                    "type": "datetime-local",
+                    "class":"form-control form-control-sm"
+                    }
+            ),
+            "duration": forms.widgets.NumberInput(
+                attrs={
+                    "class": "form-control form-control-sm"}
+            ),
+            "thought": forms.widgets.Select(
+                attrs={
+                    "class": "form-control form-control-sm"}
+            )
         }
