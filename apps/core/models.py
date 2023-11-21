@@ -51,10 +51,16 @@ class Thought(models.Model):
         verbose_name="Emotion Intensity",
     )
 
+    def __str__(self):
+        return self.name
+
 
 class ThoughtDate(models.Model):
     timestamp = models.DateTimeField()
     duration = models.PositiveSmallIntegerField()
     thought = models.ForeignKey(Thought, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return f"{self.thought} | {self.timestamp.strftime('%d/%m/%Y')}"
 
 
