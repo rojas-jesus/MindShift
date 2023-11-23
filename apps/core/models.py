@@ -7,15 +7,7 @@ EMOTION_CHOICES = [
     ("angry", "Angry"),
 ]
 
-EMOTION_INTENSITY = [
-    (None, "No Intensity"),
-    ("low", "Low"),
-    ("medium", "Medium"),
-    ("high", "High"),
-    ("severe", "severe"),
-]
-
-THOUGHT_INTENSITY = [
+INTENSITY = [
     (None, "No Intensity"),
     ("low", "Low"),
     ("medium", "Medium"),
@@ -23,6 +15,8 @@ THOUGHT_INTENSITY = [
     ("severe", "Severe"),
 ]
 
+EMOTION_INTENSITY = INTENSITY
+THOUGHT_INTENSITY = INTENSITY
 
 class Thought(models.Model):
     name = models.CharField(max_length=150)
@@ -62,5 +56,6 @@ class ThoughtDate(models.Model):
 
     def __str__(self):
         return f"{self.thought} | {self.timestamp.strftime('%d/%m/%Y')}"
+
 
 
