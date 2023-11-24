@@ -58,4 +58,52 @@ class ThoughtDate(models.Model):
         return f"{self.thought} | {self.timestamp.strftime('%d/%m/%Y')}"
 
 
+class Facilitator(models.Model):
+    name = models.CharField(max_length=150)
+    description = models.TextField(verbose_name="Description")
+
+    def __str__(self):
+        return self.name
+
+
+class Action(models.Model):
+    name = models.CharField(max_length=150)
+    description = models.TextField(verbose_name="Description")
+    advantages = models.TextField(null=True, blank=True, verbose_name="Advantages")
+    disadvantages = models.TextField(null=True, blank=True, verbose_name="Disadvantages")
+    facilitator  = models.ManyToManyField(Facilitator, blank=True)
+    thought_facilitator = models.ManyToManyField(Thought, blank=True)
+    emotion = models.CharField(
+        max_length=20,
+        choices=EMOTION_CHOICES,
+        null=True,
+        blank=True,
+        verbose_name="Emotion"
+    )
+    emotion_intensity = models.CharField(
+        max_length=20,
+        choices=EMOTION_INTENSITY,
+        null=True,
+        blank=True,
+        verbose_name="Emotion Intensity",
+    )
+
+    def __str__(self):
+        return self.name
+
+
+class ActionDate(models.Model):
+    timestamp = models.DateField()
+    hour = models.PositiveSmallIntegerField(null=True)
+    minute = models.PositiveSmallIntegerField(null=True)
+    second = models.PositiveSmallIntegerField(null=True, blank=True)
+    action = models.ForeignKey(Action, on_delete=models.SET_NULL, null=True)
+    duration_total = models.PositiveBigIntegerField(null=True, blank=True)
+
+    def save(self, *args, **kargs):
+        self.duration_total = (self.hour*3600)+(self.minute*60)+(self.second)
+        super().save(*args, **kargs)
+
+    def __str__(self):
+        return f"{self.action} | {self.timestamp} "
 
