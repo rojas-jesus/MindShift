@@ -1,14 +1,14 @@
 from django.shortcuts import render
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 from django.urls import reverse_lazy
 
-from .models import Thought, ThoughtDate
-from .forms import CreateThoughtForm, CreateThoughtDateForm
+from .models import Thought, ThoughtDate, Action 
+from .forms import CreateThoughtForm, CreateThoughtDateForm, ActionCreateForm, ActionUpdateForm
 
 from datetime import timedelta, datetime
 from django.db.models import Count
 
-
+# Thought Views
 def Home(request):
     return render(request, "core/home.html")
 
@@ -53,3 +53,19 @@ def MostRelevantThoughts(request):
         "thoughts_dates_grouped": thoughts_dates_grouped,
     }
     return render(request, "core/mostrelevantthoughts.html", context)
+
+
+
+# Action Views
+class ActionCreateView(CreateView):
+    model = Action
+    form_class = ActionCreateForm
+    template_name = "core/actioncreate.html"
+    success_url = reverse_lazy("Home")
+
+
+class ActionUpdateView(UpdateView):
+    model = Action
+    form_class = ActionUpdateForm
+    template_name = "core/actionupdate.html"
+    success_url = reverse_lazy("Home")
