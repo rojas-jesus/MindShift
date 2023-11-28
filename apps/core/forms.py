@@ -111,15 +111,19 @@ class ActionCreateForm(forms.ModelForm):
             "facilitator": forms.widgets.SelectMultiple(
                 attrs={
                     "class": "form-control form-control-sm",
+                    "id":"facilitator-choicesjs",
                 }
             ),
             "thought_facilitator": forms.widgets.SelectMultiple(
                 attrs={
                     "class": "form-control form-control-sm",
+                    "id":"thought-facilitator-choicesjs"
                 }
             ),
             "emotion": forms.widgets.Select(
-                attrs={"class": "form-control form-control-sm"}
+                attrs={"class": "form-control form-control-sm",
+                       "id":"emotion-choicesjs",
+                       }
             ),
             "emotion_intensity": forms.widgets.Select(
                 attrs={"class": "form-control form-control-sm"}

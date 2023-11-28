@@ -1,7 +1,20 @@
 {% extends "base/form.html" %}
+{% load static %}
 
 {% block head_extra %}
+	<!-- Include base CSS (optional) -->
+	<!--
+	<link rel="stylesheet" href="{% static 'lib/Choices-10.2.0/public/assets/styles/base.min.css' %}" />
+	-->
+
+	<!-- Choices CSS -->
+	<link rel="stylesheet" href="{% static 'lib/Choices-10.2.0/public/assets/styles/choices.min.css' %}" />
+
+	<!-- Choices JavaScript -->
+	<script src="{% static 'lib/Choices-10.2.0/public/assets/scripts/choices.min.js' %}"></script>
+
 	<title>Create Action</title>
+
 {% endblock %}
 
 {% block card_title %}
@@ -10,4 +23,26 @@
 
 {% block cancel_button_url %}
 	{% url 'ThoughtsList' %}
+{% endblock %}
+
+{% block javascript %}
+<script>
+	// Initialize Choices.js for thought-facilitator-choicesjs
+	document.addEventListener('DOMContentLoaded', function () {
+		const selectElement = document.querySelector('#thought-facilitator-choicesjs');
+		const choices = new Choices(selectElement,{allowHTML:true});
+	});
+
+	// Initialize Choices.js for facilitator-choicesjs
+	document.addEventListener('DOMContentLoaded', function () {
+		const selectElement1 = document.querySelector('#facilitator-choicesjs');
+		const choices1 = new Choices(selectElement1,{allowHTML:true});
+	});
+
+	// Initialize Choices.js for emotion-choicesjs
+	document.addEventListener('DOMContentLoaded', function () {
+		const selectElement2 = document.querySelector('#emotion-choicesjs');
+		const choices2 = new Choices(selectElement2,{allowHTML:true});
+	});
+</script>
 {% endblock %}
