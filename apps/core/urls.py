@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import Home, ThoughtsList, CreateThought, CreateThoughtDate, MostRelevantThoughts, ActionCreateView, ActionUpdateView
+from .views import Home, ThoughtsList, CreateThought, CreateThoughtDate, MostRelevantThoughts, ActionCreateView, ActionUpdateView, ActionDetailView
 
 
 urlpatterns = [
@@ -11,5 +11,6 @@ urlpatterns = [
 
     path("action/create/", ActionCreateView.as_view(), name="action_create"),
     path("action/<pk>/update/", ActionUpdateView.as_view(), name="action_update"),
+    path("action/<int:pk>/", ActionDetailView.as_view() , name="action_detail"),
 
 ]

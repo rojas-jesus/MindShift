@@ -1,0 +1,28 @@
+{% extends "base/body.html" %}
+
+{% block content %}
+<div class="row pt-3 pb-3">
+	<div class="col-6 mx-auto">
+		<div class="card shadow" >
+
+			<div class="card-header">
+			{% block card_title %}
+			{% endblock %}
+			</div>
+
+			<ul class="list-group list-group-flush">
+			{% block card_list_items %}
+			{% endblock %}
+			</ul>
+
+			<div class="card-footer">
+			<div class="d-grid gap-2 col-10 mx-auto ">
+				<a class="btn btn-primary" href="{% block go_back_button_url %}{% endblock %}">
+					Go Back
+				</a>
+			</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

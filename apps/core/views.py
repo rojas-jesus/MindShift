@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, DetailView
 from django.urls import reverse_lazy
 
 from .models import Thought, ThoughtDate, Action 
@@ -69,3 +69,9 @@ class ActionUpdateView(UpdateView):
     form_class = ActionUpdateForm
     template_name = "core/actionupdate.html"
     success_url = reverse_lazy("Home")
+
+
+class ActionDetailView(DetailView):
+    model = Action
+    template_name = "core/action_detail.html"
+

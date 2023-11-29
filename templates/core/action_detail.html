@@ -1,0 +1,28 @@
+{% extends "base/detail.html" %}
+
+{% block card_title %}
+	 Action Detail 
+{% endblock %}
+
+{% block card_list_items %}
+	<li class="list-group-item"><b>Name:</b> {{object.name}} </li>
+	<li class="list-group-item"><b>Description:</b> {{object.description}} </li>
+	<li class="list-group-item"><b>Advantages:</b> {{object.advantages}} </li>
+	<li class="list-group-item"><b>Disadvantages:</b> {{object.disadvantages}} </li>
+	<li class="list-group-item"><b>Facilitator:</b> 
+		{% for facilitator in object.facilitator.all %}
+		{{ facilitator.name }},
+		{% endfor %}
+	</li>  
+	<li class="list-group-item"><b>Thought Facilitator :</b>
+		{% for thought_facilitator in object.thought_facilitator.all %}
+		{{ thought_facilitator.name }}, 
+		{% endfor %}
+	</li>  
+	<li class="list-group-item"> <b>Emotion:</b> {{object.emotion}} </li>  
+	<li class="list-group-item"> <b>Emotion Intensity:</b> {{object.emotion_intensity }} </li>  
+{% endblock %}
+
+{% block go_back_button_url %}
+	{% url 'ThoughtsList' %}
+{% endblock go_back_button_url %}
