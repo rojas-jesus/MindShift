@@ -4,8 +4,8 @@
 <form method="post" action="." >
 	<div class="row pt-3 pb-3">
 		<div class="col-6 mx-auto">
-			<div class="card text-dark bg-light" >
-				<div class="card-header">
+			<div class="card text-dark bg-light border-light shadow" >
+				<div class="card-header bg-transparent border-light">
 					
 					<h5 class="card-title ">
 						{% block card_title %}
@@ -16,22 +16,22 @@
 
 				<div class="card-body">
 					<div class="form-group">
-						{% csrf_token %}
-						{% for item in form %}
-						<div class="mb-3">
-							{% if item.field.required == True %}
-							<label class="form-label"> <b>{{ item.label }}</b> <span style="color:red;"> * </span></label>
-							{% else %}
-							<label class="form-label"> <b>{{ item.label }}</b> </label>
-							{% endif %}
-							{{ item }}
-						</div>
-						{% endfor %}
+					{% csrf_token %}
+					{% for item in form %}
+					<div class="mb-3">
+						{% if item.field.required == True %}
+						<label class="form-label" for="{{item.auto_id}}"><b>{{item.label}}</b><span style="color:red;"> *</span></label>
+						{% else %}
+						<label class="form-label" for="{{item.auto_id}}"><b>{{item.label}}</b></label>
+						{% endif %}
+						{{ item }}
+					</div>
+					{% endfor %}
 					</div>
 				</div>
 				<!-- /. card-body -->
 
-				<div class="card-footer">
+				<div class="card-footer bg-transparent border-light">
 					<div class="d-grid gap-2 col-12 mx-auto ">
 						<button type "submit" class="btn btn-outline-primary rounded-pill"><i class="bi bi-floppy"></i>&nbsp;Save</button>
 					</div>

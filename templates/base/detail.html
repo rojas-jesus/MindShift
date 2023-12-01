@@ -5,10 +5,10 @@
 	<div class="col-6 mx-auto">
 		<div class="card shadow" >
 
-			<div class="card-header">
+			<h5 class="card-header">
 			{% block card_title %}
 			{% endblock %}
-			</div>
+			</h5>
 
 			<ul class="list-group list-group-flush">
 			{% block card_list_items %}
@@ -16,7 +16,7 @@
 			</ul>
 
 			<div class="card-footer">
-			<div class="d-grid gap-2 col-10 mx-auto ">
+			<div class="d-grid gap-2 col-12 mx-auto ">
 				<a class="btn btn-outline-primary rounded-pill" href="{% block go_back_button_url %}{% endblock %}">
 				<i class="bi bi-arrow-left"></i>
 				Go Back
