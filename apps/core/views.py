@@ -3,7 +3,7 @@ from django.views.generic import CreateView, UpdateView, DetailView
 from django.urls import reverse_lazy
 
 from .models import Thought, ThoughtDate, Action 
-from .forms import CreateThoughtForm, CreateThoughtDateForm, ActionCreateForm, ActionUpdateForm
+from .forms import ThoughtForm, ThoughtDateForm, ActionCreateForm, ActionUpdateForm
 
 from datetime import timedelta, datetime
 from django.db.models import Count
@@ -20,17 +20,17 @@ def ThoughtsList(request):
     return render(request, "core/thoughtslist.html", context)
 
 
-class CreateThought(CreateView):
+class ThoughtCreateView(CreateView):
     model = Thought
-    form_class = CreateThoughtForm
-    template_name = "core/createthought.html"
+    form_class = ThoughtForm
+    template_name = "core/thought_create.html"
     success_url = reverse_lazy("ThoughtsList")
 
 
-class CreateThoughtDate(CreateView):
+class ThoughtDateCreateView(CreateView):
     model = ThoughtDate
-    form_class = CreateThoughtDateForm
-    template_name = "core/createthoughtdate.html"
+    form_class = ThoughtDateForm
+    template_name = "core/thoughtdate_create.html"
     success_url = reverse_lazy("Home")  # TODO: Change the "Home" URL to another appropiate to redirect after a successful operation.
 
 

@@ -1,12 +1,12 @@
 from django.urls import path
-from .views import Home, ThoughtsList, CreateThought, CreateThoughtDate, MostRelevantThoughts, ActionCreateView, ActionUpdateView, ActionDetailView
+from .views import Home, ThoughtsList, ThoughtCreateView, ThoughtDateCreateView, MostRelevantThoughts, ActionCreateView, ActionUpdateView, ActionDetailView
 
 
 urlpatterns = [
     path("home/", Home, name = "Home" ),
     path("thoughtslist/", ThoughtsList, name = "ThoughtsList"),
-    path("createthought/", CreateThought.as_view(), name = "CreateThought"),
-    path("createthoughtdate/", CreateThoughtDate.as_view(), name = "CreateThoughtDate"),
+    path("thought/create/", ThoughtCreateView.as_view(), name = "thought-create"),
+    path("thought-date/create/", ThoughtDateCreateView.as_view(), name = "thought-date-create"),
     path("mostrelevantthoughts/", MostRelevantThoughts, name = "MostRelevantThoughts"),
 
     path("action/create/", ActionCreateView.as_view(), name="action_create"),

@@ -2,7 +2,7 @@ from django import forms
 from .models import Thought, ThoughtDate, Action
 
 
-class CreateThoughtForm(forms.ModelForm):
+class ThoughtForm(forms.ModelForm):
     class Meta:
         model = Thought
         fields = "__all__"
@@ -47,7 +47,7 @@ class CreateThoughtForm(forms.ModelForm):
         }
 
 
-class CreateThoughtDateForm(forms.ModelForm):
+class ThoughtDateForm(forms.ModelForm):
     class Meta:
         model = ThoughtDate
         fields = "__all__"
