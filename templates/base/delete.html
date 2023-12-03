@@ -1,0 +1,37 @@
+{% extends "base/body.html" %}
+
+{% block content %}
+<form method="post" action="." >
+	{% csrf_token %}
+	<div class="row pt-3 pb-3">
+		<div class="col-6 mx-auto">
+			<div class="card text-dark bg-light border-light shadow" >
+
+				<div class="card-header bg-transparent border-light">
+					<h5 class="card-title text-center">
+						{% block card_title %}
+						{% endblock %}
+					</h5>	
+				</div>
+				<!-- /. card-header -->
+
+				<div class="card-body">
+				    <h5 class="card-title text-center">Are you sure you want to delete?</h5>
+				</div>
+				<!-- /. card-body -->
+
+				<div class="card-footer bg-transparent border-light">
+					<div class="d-grid gap-2 col-12 mx-auto ">
+						<a class="btn btn-outline-success rounded-pill" href="
+						   {% block cancel_button_url %}
+						   {% endblock %}
+						">Cancel</a>
+						<button type "submit" class="btn btn-danger rounded-pill"><i class="bi bi-trash"></i>&nbsp;Delete</button>
+					</div>
+					<br/>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+{% endblock %}

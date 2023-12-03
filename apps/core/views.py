@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView, UpdateView, DetailView
+from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
 from django.urls import reverse_lazy
 
 from .models import Thought, ThoughtDate, Action 
@@ -22,6 +22,24 @@ class ThoughtCreateView(CreateView):
     model = Thought
     form_class = ThoughtForm
     template_name = "core/thought/create.html"
+    success_url = reverse_lazy("core:thought-list")
+
+
+class ThoughtDetailView(DetailView):
+    model = Thought
+    template_name = "core/thought/detail.html"
+
+
+class ThoughtUpdateView(UpdateView):
+    model = Thought
+    form_class = ThoughtForm
+    template_name = "core/thought/update.html"
+    success_url = reverse_lazy("core:thought-list")
+
+
+class ThoughtDeleteView(DeleteView):
+    model = Thought
+    template_name = "core/thought/delete.html"
     success_url = reverse_lazy("core:thought-list")
 
 

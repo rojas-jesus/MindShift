@@ -1,0 +1,15 @@
+{% extends "base/form.html" %}
+{% load static %}
+
+{% block head_extra %}
+	<title>Update Thought</title>
+{% endblock %}
+
+{% block card_title %}
+	Update Thought  
+{% endblock %}
+
+{% block cancel_button_url %}
+	{% url 'core:thought-list' %}
+{% endblock %}
+
