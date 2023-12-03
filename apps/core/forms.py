@@ -50,17 +50,13 @@ class ThoughtForm(forms.ModelForm):
 class ThoughtDateForm(forms.ModelForm):
     class Meta:
         model = ThoughtDate
-        fields = "__all__"
+        exclude = ["duration_total"]
         widgets = {
             "timestamp": forms.widgets.DateTimeInput(
                 attrs={
                     "type": "datetime-local",
                     "class":"form-control form-control-sm"
                     }
-            ),
-            "duration": forms.widgets.NumberInput(
-                attrs={
-                    "class": "form-control form-control-sm"}
             ),
             "thought": forms.widgets.Select(
                 attrs={

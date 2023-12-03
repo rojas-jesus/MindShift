@@ -51,8 +51,15 @@ class Thought(models.Model):
 
 class ThoughtDate(models.Model):
     timestamp = models.DateTimeField()
-    duration = models.PositiveSmallIntegerField()
     thought = models.ForeignKey(Thought, on_delete=models.SET_NULL, null=True)
+    hour = models.PositiveSmallIntegerField(null=True, blank=True)
+    minute = models.PositiveSmallIntegerField(null=True, blank=True)
+    second = models.PositiveSmallIntegerField(null=True, blank=True)
+    duration_total = models.PositiveBigIntegerField(null=True, blank=True)
+
+    def save(self, *args, **kargs):
+        self.duration_total = (self.hour*3600)+(self.minute*60)+(self.second)
+        super().save(*args, **kargs)
 
     def __str__(self):
         return f"{self.thought} | {self.timestamp.strftime('%d/%m/%Y')}"
