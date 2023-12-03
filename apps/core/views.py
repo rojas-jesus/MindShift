@@ -1,40 +1,41 @@
 from django.shortcuts import render
-from django.views.generic import CreateView, UpdateView, DetailView
+from django.views.generic import ListView, CreateView, UpdateView, DetailView
 from django.urls import reverse_lazy
 
 from .models import Thought, ThoughtDate, Action 
-from .forms import ThoughtForm, ThoughtDateForm, ActionCreateForm, ActionUpdateForm
+from .forms import ThoughtForm, ThoughtDateForm, ActionForm 
 
 from datetime import timedelta, datetime
 from django.db.models import Count
 
 # Thought Views
-def Home(request):
+def home(request):
     return render(request, "core/home.html")
 
 
-def ThoughtsList(request):
-    thoughts_list = Thought.objects.all()
-
-    context = {"thought_list": thoughts_list}
-    return render(request, "core/thoughtslist.html", context)
+class ThoughtListView(ListView):
+    model = Thought
+    template_name = "core/thought/list.html"
 
 
 class ThoughtCreateView(CreateView):
     model = Thought
     form_class = ThoughtForm
-    template_name = "core/thought_create.html"
-    success_url = reverse_lazy("ThoughtsList")
+    template_name = "core/thought/create.html"
+    success_url = reverse_lazy("core:thought-list")
 
 
 class ThoughtDateCreateView(CreateView):
     model = ThoughtDate
     form_class = ThoughtDateForm
-    template_name = "core/thoughtdate_create.html"
-    success_url = reverse_lazy("Home")  # TODO: Change the "Home" URL to another appropiate to redirect after a successful operation.
+    template_name = "core/thoughtdate/create.html"
+    success_url = reverse_lazy("core:home")  # TODO: Change the "core:home" URL to another appropiate to redirect after a successful operation.
 
 
-def MostRelevantThoughts(request):
+def most_relevant_thoughts(request):
+    """
+    Most relevant thoughts based on the number of occurrences in the last 30 days.
+    """
     current_date = datetime.now()
     thirty_days_ago_date = current_date - timedelta(days=30)
 
@@ -56,22 +57,23 @@ def MostRelevantThoughts(request):
 
 
 
+
 # Action Views
 class ActionCreateView(CreateView):
     model = Action
-    form_class = ActionCreateForm
-    template_name = "core/actioncreate.html"
-    success_url = reverse_lazy("Home")
+    form_class = ActionForm
+    template_name = "core/action/create.html"
+    success_url = reverse_lazy("core:home")
 
 
 class ActionUpdateView(UpdateView):
     model = Action
-    form_class = ActionUpdateForm
-    template_name = "core/actionupdate.html"
-    success_url = reverse_lazy("Home")
+    form_class = ActionForm
+    template_name = "core/action/update.html"
+    success_url = reverse_lazy("core:home")
 
 
 class ActionDetailView(DetailView):
     model = Action
-    template_name = "core/action_detail.html"
+    template_name = "core/action/detail.html"
 

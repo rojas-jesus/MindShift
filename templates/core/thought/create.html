@@ -1,13 +1,13 @@
 {% extends "base/form.html" %}
 
 {% block head_extra %}
-	<title>Update Action</title>
+	<title>Create Thought</title>
 {% endblock %}
 
 {% block card_title %}
-	Update Action
+	Create Thought
 {% endblock %}
 
 {% block cancel_button_url %}
-	{% url 'ThoughtsList' %}
+	{% url 'core:thought-list' %}
 {% endblock %}

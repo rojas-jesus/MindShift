@@ -72,7 +72,7 @@ class ThoughtDateForm(forms.ModelForm):
 
 
 # Action Forms
-class ActionCreateForm(forms.ModelForm):
+class ActionForm(forms.ModelForm):
     class Meta:
         model = Action
         fields = "__all__"
@@ -130,6 +130,3 @@ class ActionCreateForm(forms.ModelForm):
             ),
         }
 
-
-class ActionUpdateForm(ActionCreateForm):
-    pass

@@ -13,14 +13,14 @@
 
 {% block table_body %}
 
-{% for x in  thought_list %}
+{% for thought in object_list %}
 <tr>
-	<td> {{ x.id }} </td>
-	<td> {{ x.name }} </td>
-	<td> {{ x.description }} </td>
-	<td> {{ x.advantages }} </td>
-	<td> {{ x.disadvantages }} </td>
-	<td> {{ x.emotion }} </td>
+	<td> {{ thought.id }} </td>
+	<td> {{ thought.name }} </td>
+	<td> {{ thought.description }} </td>
+	<td> {{ thought.advantages }} </td>
+	<td> {{ thought.disadvantages }} </td>
+	<td> {{ thought.emotion }} </td>
 </tr>
 {% endfor %}
 
