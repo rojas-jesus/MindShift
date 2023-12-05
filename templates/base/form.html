@@ -7,7 +7,7 @@
 			<div class="card text-dark bg-light border-light shadow" >
 				<div class="card-header bg-transparent border-light">
 					
-					<h5 class="card-title ">
+					<h5 class="card-title text-center">
 						{% block card_title %}
 						{% endblock %}
 					</h5>	
@@ -25,6 +25,11 @@
 						<label class="form-label" for="{{item.auto_id}}"><b>{{item.label}}</b></label>
 						{% endif %}
 						{{ item }}
+						{% if item.help_text %}
+						    <div class="form-text ">
+							{{ item.help_text }}
+							</div>
+						{% endif %}
 					</div>
 					{% endfor %}
 					</div>

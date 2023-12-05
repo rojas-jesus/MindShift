@@ -6,8 +6,62 @@
 
 {% block card_title %}
 	Create Thought Date
+<style>
+.custom-tooltip {
+  --bs-tooltip-max-width: 40vw;
+}
+</style>
+
+<a href="#" class="link-dark float-end" data-bs-toggle="tooltip" data-bs-html="true"   data-bs-custom-class="custom-tooltip" data-bs-title="
+<b>Duration Thought Exmaples</b>
+<br/>
+To represent 2 hours duration:
+<br/>
+<b>Hour:</b> 2 
+<br/>
+<b>Minute:</b> blank 
+<br/>
+<b>Second:</b> blank
+<br/>
+<br/>
+To represent 45 minutes duration:
+<br/>
+<b>Hour:</b> blank 
+<br/>
+<b>Minute:</b> 45 
+<br/>
+<b>Second:</b> Blank
+<br/>
+<br/>
+To represent 30 seconds duration:
+<br/>
+<b>Hour:</b> Blank 
+<br/>
+<b>Minute:</b> Blank 
+<br/>
+<b>Second:</b> 30
+<br/>
+Note: You can combine these 
+<br/>
+fields, to represent more
+<br/>
+accure duration.
+<br/>
+">
+<i class="bi bi-question-circle-fill"></i>
+</a>
 {% endblock %}
 
 {% block cancel_button_url %}
 	{% url 'core:home' %}
 {% endblock %}
+
+{% block javascript %}
+
+<script>
+	const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+	const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+</script>
+
+	
+{% endblock javascript %}

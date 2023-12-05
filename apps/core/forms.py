@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
 from .models import Thought, ThoughtDate, Action
 
 
@@ -47,16 +48,34 @@ class ThoughtForm(forms.ModelForm):
         }
 
 
+
 class ThoughtDateForm(forms.ModelForm):
     class Meta:
         model = ThoughtDate
         exclude = ["duration_total"]
+        help_texts = {
+                "hour": _("If the thought lasted less than an hour, you can skip this field."),
+                "minute": _("If the thought lasted less than a minute, you can skip this field."),
+                "second": _("Indicate how long the thought lasted in seconds. If you have already specify the hour or minute fields, you can leave this field blank."),
+                }
         widgets = {
             "timestamp": forms.widgets.DateTimeInput(
                 attrs={
                     "type": "datetime-local",
                     "class":"form-control form-control-sm"
                     }
+            ),
+            "hour": forms.widgets.NumberInput(
+                attrs={
+                    "class": "form-control form-control-sm"}
+            ),
+            "minute": forms.widgets.NumberInput(
+                attrs={
+                    "class": "form-control form-control-sm"}
+            ),
+            "second": forms.widgets.NumberInput(
+                attrs={
+                    "class": "form-control form-control-sm"}
             ),
             "thought": forms.widgets.Select(
                 attrs={
