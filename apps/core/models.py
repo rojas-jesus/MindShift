@@ -52,9 +52,9 @@ class Thought(models.Model):
 class ThoughtDate(models.Model):
     timestamp = models.DateTimeField()
     thought = models.ForeignKey(Thought, on_delete=models.SET_NULL, null=True)
-    hour = models.PositiveSmallIntegerField(null=True, blank=True)
-    minute = models.PositiveSmallIntegerField(null=True, blank=True)
-    second = models.PositiveSmallIntegerField(null=True, blank=True)
+    hour = models.PositiveSmallIntegerField(null=True, blank=True, default=0)
+    minute = models.PositiveSmallIntegerField(null=True, blank=True, default=0)
+    second = models.PositiveSmallIntegerField(null=True, blank=True, default=0)
     duration_total = models.PositiveBigIntegerField(null=True, blank=True)
 
     def save(self, *args, **kargs):
