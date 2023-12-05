@@ -43,11 +43,39 @@ class ThoughtDeleteView(DeleteView):
     success_url = reverse_lazy("core:thought-list")
 
 
+
+# ThoughtDate Views
+class ThoughtDateListView(ListView):
+    model = ThoughtDate
+    template_name = "core/thoughtdate/list.html"
+
+
 class ThoughtDateCreateView(CreateView):
     model = ThoughtDate
     form_class = ThoughtDateForm
     template_name = "core/thoughtdate/create.html"
-    success_url = reverse_lazy("core:home")  # TODO: Change the "core:home" URL to another appropiate to redirect after a successful operation.
+    success_url = reverse_lazy("core:thought-date-list")  
+
+
+class ThoughtDateDetailView(DetailView):
+    model = ThoughtDate
+    template_name = "core/thoughtdate/detail.html"
+
+
+class ThoughtDateUpdateView(UpdateView):
+    model = ThoughtDate
+    form_class = ThoughtDateForm
+    template_name = "core/thoughtdate/update.html"
+    success_url = reverse_lazy("core:thought-date-list")
+
+
+class ThoughtDateDeleteView(DeleteView):
+    model = ThoughtDate
+    template_name = "core/thoughtdate/delete.html"
+    success_url = reverse_lazy("core:thought-date-list")
+
+
+
 
 
 def most_relevant_thoughts(request):

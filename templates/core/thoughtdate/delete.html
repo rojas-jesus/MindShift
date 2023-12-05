@@ -1,0 +1,13 @@
+{% extends "base/delete.html" %}
+
+{% block head_extra %}
+	<title>Delete Thought Date</title>
+{% endblock %}
+
+{% block card_title %}
+	Delete Thought Date
+{% endblock %}
+
+{% block cancel_button_url %}
+	{% url 'core:thought-date-list' %}
+{% endblock %}

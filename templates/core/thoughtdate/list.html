@@ -1,0 +1,35 @@
+{% extends "base/list.html" %}
+
+{% block table_head %}
+<tr>
+	<th scope="col" class="text-bg-dark" style="width:5%;">Id</th>
+	<th scope="col" class="bg-dark" style="width:20%;">Timestamp</th>
+	<th scope="col" style="width:20%;">Thought</th>
+	<th scope="col" style="width:20%;">Thought Duration</th>
+</tr>
+{% endblock %}
+
+{% block table_body %}
+
+{% for thought_date in object_list %}
+<tr>
+	<td> {{ thought_date.id }} </td>
+	<td> {{ thought_date.timestamp }} </td>
+	<td> {{ thought_date.thought }} </td>
+	<td> 
+		{% if thought_date.hour %}
+			{{ thought_date.hour}}h 
+		{% endif %}
+
+		{% if thought_date.minute %}
+			{{ thought_date.minute}}m
+		{% endif %}
+
+		{% if thought_date.second %}
+			{{ thought_date.second}}s
+		{% endif %}
+	</td>
+</tr>
+{% endfor %}
+
+{% endblock %}

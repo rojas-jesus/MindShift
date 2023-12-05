@@ -1,0 +1,29 @@
+{% extends "base/detail.html" %}
+
+{% block card_title %}
+	Thought Date Detail 
+{% endblock %}
+
+{% block card_list_items %}
+	<li class="list-group-item"><b>Timestamp:</b> {{object.timestamp}} </li>
+	<li class="list-group-item"><b>Thought:</b> {{object.thought}} </li>
+	<li class="list-group-item"><b class="text-center">Thought Duration:</b> 
+	{% if object.hour > 0%}
+		{{object.hour}}h
+	{% endif %}
+
+	{% if object.minute %}
+		{{object.minute}}m
+	{% endif %}
+
+	{% if object.second %}
+		{{object.second}}s
+	{% endif %}
+	</li>
+{% endblock %}
+
+{% block go_back_button_url %}
+	{% url 'core:thought-date-list' %}
+{% endblock go_back_button_url %}
+
+
