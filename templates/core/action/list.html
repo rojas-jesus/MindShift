@@ -1,0 +1,23 @@
+{% extends "base/list.html" %}
+
+{% block table_head %}
+<tr>
+	<th scope="col" class="text-bg-dark" style="width:5%;">Id</th>
+	<th scope="col" class="bg-dark" style="width:20%;">Name</th>
+	<th scope="col" style="width:20%;">Description</th>
+	<th scope="col" style="width:20%;">Facilitator</th>
+</tr>
+{% endblock %}
+
+{% block table_body %}
+
+{% for action in object_list %}
+<tr>
+	<td> {{ action.id }} </td>
+	<td> {{ action.name }} </td>
+	<td> {{ action.description }} </td>
+	<td> {{ action.facilitator }} </td>
+</tr>
+{% endfor %}
+
+{% endblock %}

@@ -105,21 +105,31 @@ def most_relevant_thoughts(request):
 
 
 # Action Views
+
+class ActionListView(ListView):
+    model = Action
+    template_name = "core/action/list.html"
+
+
 class ActionCreateView(CreateView):
     model = Action
     form_class = ActionForm
     template_name = "core/action/create.html"
-    success_url = reverse_lazy("core:home")
-
-
-class ActionUpdateView(UpdateView):
-    model = Action
-    form_class = ActionForm
-    template_name = "core/action/update.html"
-    success_url = reverse_lazy("core:home")
+    success_url = reverse_lazy("core:action-list")
 
 
 class ActionDetailView(DetailView):
     model = Action
     template_name = "core/action/detail.html"
 
+
+class ActionUpdateView(UpdateView):
+    model = Action
+    form_class = ActionForm
+    template_name = "core/action/update.html"
+    success_url = reverse_lazy("core:action-list")
+
+class ActionDeleteView(DeleteView):
+    model = Action
+    template_name = "core/action/delete.html"
+    success_url = reverse_lazy("core:action-list")
