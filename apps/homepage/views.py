@@ -6,3 +6,8 @@ def home(request):
     base = ["about us"]
 
     return HttpResponse(base)
+
+def about_us(request):
+    text = ["link"]
+
+    return HttpResponse(text)
