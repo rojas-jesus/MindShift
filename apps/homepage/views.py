@@ -5,7 +5,7 @@ from django.http import HttpResponse
 def home(request):
     base = ["about us"]
 
-    return HttpResponse(base)
+    return render(request,"homepage/homepage.html")
 
 def about_us(request):
     text = ["link"]
