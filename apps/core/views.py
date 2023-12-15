@@ -136,3 +136,32 @@ class ActionDeleteView(DeleteView):
     model = Action
     template_name = "core/action/delete.html"
     success_url = reverse_lazy("core:action-list")
+
+
+# Action Views Extra
+
+def action_emotion_chart_view(request):
+    """
+    Chart that displays the number of times a type of emotion has been experienced, based on all actions
+    """
+    user = request.user
+
+    action_emotion_sad = Action.objects.filter(user=user,emotion=("sad"))
+    action_emotion_sad = action_emotion_sad.count()
+
+    action_emotion_worry = Action.objects.filter(user=user,emotion=("worry"))
+    action_emotion_worry = action_emotion_worry.count()
+
+    action_emotion_happy = Action.objects.filter(user=user,emotion=("happy"))
+    action_emotion_happy = action_emotion_happy.count()
+
+    action_emotion_angry = Action.objects.filter(user=user,emotion=("angry"))
+    action_emotion_angry = action_emotion_angry.count()
+
+    context = {
+        "action_emotion_sad": action_emotion_sad,
+        "action_emotion_worry": action_emotion_sad,
+        "action_emotion_happy": action_emotion_happy,
+        "action_emotion_angry": action_emotion_angry,
+    }
+    return render(request, "core/action/emotionchart.html", context)

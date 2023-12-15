@@ -1,0 +1,40 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block head_extra %}
+	<script src="{% static 'lib/apexcharts.js-3.44.2/dist/apexcharts.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+
+<body>
+<div id="chart">
+</div>
+
+<script>
+        var options = {
+		series: [{{action_emotion_sad}}, {{action_emotion_worry}}, {{action_emotion_happy}}, {{action_emotion_angry}}],
+          chart: {
+          width: 380,
+          type: 'pie',
+        },
+        labels: ['Sad', 'Worry', 'Happy', 'Angry'],
+        responsive: [{
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: 'bottom'
+            }
+          }
+        }]
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+</script>
+
+</body>
+{% endblock body %}

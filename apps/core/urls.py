@@ -17,6 +17,7 @@ from .views import (
         ActionDetailView,
         ActionUpdateView,
         ActionDeleteView,
+        action_emotion_chart_view,
         )
 
 
@@ -44,5 +45,8 @@ urlpatterns = [
     path("action/<int:pk>/", ActionDetailView.as_view() , name="action-detail"),
     path("action/<pk>/update/", ActionUpdateView.as_view(), name="action-update"),
     path("action/<pk>/delete/", ActionDeleteView.as_view(), name="action-delete"),
+
+
+    path("action-emotion-chart/", action_emotion_chart_view, name="action-emotion-chart"),
 
 ]
