@@ -110,6 +110,9 @@ class ActionListView(ListView):
     model = Action
     template_name = "core/action/list.html"
 
+    def get_queryset(self):
+        return Action.objects.filter(user=self.request.user)
+
 
 class ActionCreateView(CreateView):
     model = Action

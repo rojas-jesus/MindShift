@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 EMOTION_CHOICES = [
     ("sad", "Sad"),
@@ -94,6 +95,7 @@ class Action(models.Model):
         blank=True,
         verbose_name="Emotion Intensity",
     )
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
