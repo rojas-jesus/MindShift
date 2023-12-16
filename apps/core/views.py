@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
 from django.urls import reverse_lazy
+from django.core.exceptions import PermissionDenied
 
 from .models import Thought, ThoughtDate, Action 
 from .forms import ThoughtForm, ThoughtDateForm, ActionForm 
@@ -124,6 +125,16 @@ class ActionCreateView(CreateView):
 class ActionDetailView(DetailView):
     model = Action
     template_name = "core/action/detail.html"
+
+    def dispatch(self, request, *args, **kwargs):
+        """
+        If the user associated with the object is different from the current
+        user, a PermissionDenied exception is raised.
+        """
+        obj = self.get_object()
+        if obj.user != self.request.user:
+            raise PermissionDenied() 
+        return super().dispatch(request, *args, **kwargs)
 
 
 class ActionUpdateView(UpdateView):
