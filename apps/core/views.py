@@ -143,11 +143,31 @@ class ActionUpdateView(UpdateView):
     template_name = "core/action/update.html"
     success_url = reverse_lazy("core:action-list")
 
+    def dispatch(self, request, *args, **kwargs):
+        """
+        If the user associated with the object is different from the current
+        user, a PermissionDenied exception is raised.
+        """
+        obj = self.get_object()
+        if obj.user != self.request.user:
+            raise PermissionDenied() 
+        return super().dispatch(request, *args, **kwargs)
+
+
 class ActionDeleteView(DeleteView):
     model = Action
     template_name = "core/action/delete.html"
     success_url = reverse_lazy("core:action-list")
 
+    def dispatch(self, request, *args, **kwargs):
+        """
+        If the user associated with the object is different from the current
+        user, a PermissionDenied exception is raised.
+        """
+        obj = self.get_object()
+        if obj.user != self.request.user:
+            raise PermissionDenied() 
+        return super().dispatch(request, *args, **kwargs)
 
 # Action Views Extra
 
