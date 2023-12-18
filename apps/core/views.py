@@ -121,6 +121,10 @@ class ActionCreateView(CreateView):
     template_name = "core/action/create.html"
     success_url = reverse_lazy("core:action-list")
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
 
 class ActionDetailView(DetailView):
     model = Action
