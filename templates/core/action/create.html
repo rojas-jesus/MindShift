@@ -44,5 +44,12 @@
 		const selectElement2 = document.querySelector('#emotion-choicesjs');
 		const choices2 = new Choices(selectElement2,{allowHTML:true});
 	});
+
+	// Initialize Choices.js for facilitator-action-choicesjs
+	document.addEventListener('DOMContentLoaded', function () {
+		const selectElement3 = document.querySelector('#action-facilitator-choicesjs');
+		const choices = new Choices(selectElement3,{allowHTML:true});
+	});
+
 </script>
 {% endblock %}

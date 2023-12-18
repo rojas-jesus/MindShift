@@ -29,7 +29,8 @@ class Action(models.Model):
     advantages = models.TextField(null=True, blank=True, verbose_name="Advantages")
     disadvantages = models.TextField(null=True, blank=True, verbose_name="Disadvantages")
     facilitator  = models.ManyToManyField("Facilitator", blank=True)
-    thought_facilitator = models.ManyToManyField("Thought", blank=True) 
+    thought_facilitator = models.ManyToManyField("Thought", blank=True, related_name="facilitator_thought") 
+    action_facilitator = models.ManyToManyField("Action", blank=True, related_name="facilitator_action") 
     emotion = models.CharField(
         max_length=20,
         choices=EMOTION_CHOICES,
