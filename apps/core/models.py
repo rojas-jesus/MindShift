@@ -13,24 +13,23 @@ INTENSITY = [
     ("low", "Low"),
     ("medium", "Medium"),
     ("high", "High"),
-    ("severe", "Severe"),
+    ("very high", "Very High"),
 ]
 
-EMOTION_INTENSITY = INTENSITY
-THOUGHT_INTENSITY = INTENSITY
-
-class Thought(models.Model):
+class Action(models.Model):
     name = models.CharField(max_length=150)
-    thought_intensity = models.CharField(
+    intensity = models.CharField(
         max_length=20,
-        choices=THOUGHT_INTENSITY, 
+        choices=INTENSITY, 
         null=True, 
         blank=True,
-        verbose_name="Thought Intensity",
+        verbose_name="Intensity",
     )
     description = models.TextField(verbose_name="Description")
     advantages = models.TextField(null=True, blank=True, verbose_name="Advantages")
     disadvantages = models.TextField(null=True, blank=True, verbose_name="Disadvantages")
+    facilitator  = models.ManyToManyField("Facilitator", blank=True)
+    thought_facilitator = models.ManyToManyField("Thought", blank=True) 
     emotion = models.CharField(
         max_length=20,
         choices=EMOTION_CHOICES,
@@ -40,19 +39,38 @@ class Thought(models.Model):
     )
     emotion_intensity = models.CharField(
         max_length=20,
-        choices=EMOTION_INTENSITY,
+        choices=INTENSITY,
         null=True,
         blank=True,
         verbose_name="Emotion Intensity",
     )
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
 
 
+class ActionDate(models.Model):
+    timestamp = models.DateField(null=True,blank=True, auto_now_add=True)
+    hour = models.PositiveSmallIntegerField(null=True)
+    minute = models.PositiveSmallIntegerField(null=True)
+    second = models.PositiveSmallIntegerField(null=True, blank=True)
+    action = models.ForeignKey("Action", on_delete=models.SET_NULL, null=True, blank=True)
+    duration_total = models.PositiveBigIntegerField(null=True, blank=True)
+
+    def save(self, *args, **kargs):
+        self.duration_total = (self.hour*3600)+(self.minute*60)+(self.second)
+        super().save(*args, **kargs)
+
+    def __str__(self):
+        return f"{self.action} | {self.timestamp} "
+
+class Thought(Action):
+    pass
+
 class ThoughtDate(models.Model):
-    timestamp = models.DateTimeField()
-    thought = models.ForeignKey(Thought, on_delete=models.SET_NULL, null=True)
+    timestamp = models.DateTimeField(null=True,blank=True, auto_now_add=True)
+    thought = models.ForeignKey("Thought", on_delete=models.SET_NULL, null=True, blank=True)
     hour = models.PositiveSmallIntegerField(null=True, blank=True, default=0)
     minute = models.PositiveSmallIntegerField(null=True, blank=True, default=0)
     second = models.PositiveSmallIntegerField(null=True, blank=True, default=0)
@@ -72,47 +90,4 @@ class Facilitator(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class Action(models.Model):
-    name = models.CharField(max_length=150)
-    description = models.TextField(verbose_name="Description")
-    advantages = models.TextField(null=True, blank=True, verbose_name="Advantages")
-    disadvantages = models.TextField(null=True, blank=True, verbose_name="Disadvantages")
-    facilitator  = models.ManyToManyField(Facilitator, blank=True)
-    thought_facilitator = models.ManyToManyField(Thought, blank=True)
-    emotion = models.CharField(
-        max_length=20,
-        choices=EMOTION_CHOICES,
-        null=True,
-        blank=True,
-        verbose_name="Emotion"
-    )
-    emotion_intensity = models.CharField(
-        max_length=20,
-        choices=EMOTION_INTENSITY,
-        null=True,
-        blank=True,
-        verbose_name="Emotion Intensity",
-    )
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name
-
-
-class ActionDate(models.Model):
-    timestamp = models.DateField()
-    hour = models.PositiveSmallIntegerField(null=True)
-    minute = models.PositiveSmallIntegerField(null=True)
-    second = models.PositiveSmallIntegerField(null=True, blank=True)
-    action = models.ForeignKey(Action, on_delete=models.SET_NULL, null=True)
-    duration_total = models.PositiveBigIntegerField(null=True, blank=True)
-
-    def save(self, *args, **kargs):
-        self.duration_total = (self.hour*3600)+(self.minute*60)+(self.second)
-        super().save(*args, **kargs)
-
-    def __str__(self):
-        return f"{self.action} | {self.timestamp} "
 
