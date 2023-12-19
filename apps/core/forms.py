@@ -140,7 +140,9 @@ class ThoughtDateForm(forms.ModelForm):
             ),
             "second": forms.widgets.NumberInput(
                 attrs={
-                    "class": "form-control form-control-sm"}
+                    "class": "form-control form-control-sm",
+                    #"id":"collapseWidthExample"
+                    }
             ),
             "thought": forms.widgets.Select(
                 attrs={

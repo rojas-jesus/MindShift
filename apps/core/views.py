@@ -54,7 +54,7 @@ class ThoughtDateListView(ListView):
 class ThoughtDateCreateView(CreateView):
     model = ThoughtDate
     form_class = ThoughtDateForm
-    template_name = "core/thoughtdate/create.html"
+    template_name = "core/thoughtdate/form.html"
     success_url = reverse_lazy("core:thought-date-list")  
 
 

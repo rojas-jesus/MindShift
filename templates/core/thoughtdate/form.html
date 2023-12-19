@@ -1,0 +1,85 @@
+{% extends "base/body.html" %}
+
+
+{% block head_extra %}
+	<title>Create Thought Date</title>
+{% endblock %}
+
+{% block content %}
+<form method="post" action="." >
+	<div class="row pt-3 pb-3">
+		<div class="col-6 mx-auto">
+			<div class="card text-dark bg-light border-light shadow" >
+				<div class="card-header bg-transparent border-light">
+					
+					<h5 class="card-title text-center">
+						{% block card_title %}
+						Create Thought Date
+						{% endblock %}
+					</h5>	
+				</div>
+				<!-- /. card-header -->
+
+				<div class="card-body">
+					<div class="form-group">
+					{% csrf_token %}
+					{% for item in form %}
+
+					<div>
+					{% if item.auto_id == "id_hour" %}
+					<h6>Choose how you want to specify the duration of the Thought</h6>
+					<p class="d-inline-flex gap-1">
+					  <a class="btn btn-primary btn-sm" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">second</a>
+
+					  <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">minute</button>
+
+					  <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">hour</button>
+
+					  <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">all</button>
+					</p>
+					{%endif%}
+					</div>
+
+					{% if item.auto_id == "id_second" %}
+					<div class="mb-3 collapse multi-collapse" id="multiCollapseExample1">
+					{% elif item.auto_id == "id_minute" %}
+					<div class="mb-3 collapse multi-collapse" id="multiCollapseExample2">
+					{% elif item.auto_id == "id_hour" %}
+					<div class="mb-3 collapse multi-collapse" id="multiCollapseExample3">
+					{% else %}
+					<div class="mb-3">
+					{%endif%}
+						{% if item.field.required == True %}
+						<label class="form-label" for="{{item.auto_id}}"><b>{{item.label}}</b><span style="color:red;"> *</span></label>
+						{% else %}
+						<label class="form-label" for="{{item.auto_id}}"><b>{{item.label}}</b></label>
+						{% endif %}
+						{{ item }}
+						{% if item.help_text %}
+						    <div class="form-text ">
+							{{ item.help_text }}
+							</div>
+						{% endif %}
+					</div>
+					{% endfor %}
+					</div>
+				</div>
+
+				<!-- /. card-body -->
+
+				<div class="card-footer bg-transparent border-light">
+					<div class="d-grid gap-2 col-12 mx-auto ">
+						<button type "submit" class="btn btn-outline-primary rounded-pill"><i class="bi bi-floppy"></i>&nbsp;Save</button>
+					</div>
+					<br/>
+					<a class="btn btn-link btn-sm float-start" href="
+					   {% block cancel_button_url %}
+					   {% endblock %}
+					">Cancel</a>
+				</div>
+				<!-- card-footer -->
+			</div>
+		</div>
+	</div>
+</form>
+{% endblock %}
