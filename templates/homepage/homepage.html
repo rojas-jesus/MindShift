@@ -1,9 +1,9 @@
 {% extends 'base/base.html' %}
 
 {% block body %}
-<body>
+<body style="padding-top: 70px;">
 <header> 
-	<nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
+	<nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm fixed-top">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#">Mind<b>Shift</b></a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,7 +15,7 @@
 						<a class="nav-link active" aria-current="page" href="#">About Us</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Features</a>
+						<a class="nav-link" href="#features">Features</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#">FAQ</a>
@@ -42,6 +42,7 @@
 	</nav>
 </header>
 
+<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
 <div class="container mt-5 pb-3">
 	<div class="row">
 		<div class="col-6 ">
@@ -63,7 +64,30 @@
 	</div>
 </div>
 
-<div class="container mt-5">
+
+<div class="container mt-5 pb-3">
+	<div class="row">
+		<div class="col-6 ">
+			<h1 class="mt-5"> rename </h1>
+			<p>MindShift ......................................................</p>
+			<p>MindShift ......................................................</p>
+			<p>MindShift ......................................................</p>
+			<p>MindShift ......................................................</p>
+			<p>MindShift ......................................................</p>
+			<p>MindShift ......................................................</p>
+			<p>MindShift ......................................................</p>
+			<p>MindShift ......................................................</p>
+			<p>MindShift ......................................................</p>
+			<p>MindShift ......................................................</p>
+			<p>MindShift ......................................................</p>
+		</div>
+		<div class="col-6">
+			<p class="text-center mt-5"> gif / mp4  </p>
+		</div>
+	</div>
+</div>
+
+<div class="container mt-5" id="features">
 	<div class="row ">
 		<div class="col-12 mb-3">
 			<h1 class="text-center"> Features </h1>
@@ -98,5 +122,58 @@
 		</div>
 	</div>
 </div>
+</div>
+
+<div class="container">
+  <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
+    <div class="col mb-3">
+      <a href="/" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none">
+<!--
+        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+-->
+	<h6>MindShift</h6>
+      </a>
+      <p class="text-body-secondary">&copy; 2023</p>
+    </div>
+
+    <div class="col mb-3">
+
+    </div>
+
+    <div class="col mb-3">
+      <h5>Section</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+      </ul>
+    </div>
+
+    <div class="col mb-3">
+      <h5>Section</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+      </ul>
+    </div>
+
+    <div class="col mb-3">
+      <h5>Section</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+      </ul>
+    </div>
+  </footer>
+</div>
+
 </body>
 {% endblock body %}
