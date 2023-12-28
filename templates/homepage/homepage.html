@@ -1,4 +1,56 @@
 {% extends 'base/base.html' %}
+{% load static %}
+
+{% block head_extra %}
+<style type="text/css" media="screen">
+
+/*  Infinite autoplay carousel CSS */
+.slider {
+	--totSlides: 7;
+	--slideWidth: 200px;
+	--slideHeight: 100px;
+	--animationSpeed: calc(2s * var(--totSlides));
+	box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.125);
+	height: var(--slideHeight);
+	margin: auto;
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+}
+
+.slider .slides-track {
+	animation: scroll var(--animationSpeed) linear infinite;
+	display: flex;
+	width: calc(var(--slideWidth) * var(--totSlides) * 2);
+}
+
+.slider .slide {
+	height: 100px;
+	width: var(--slideWidth);
+	filter: grayscale(100);
+	overflow: hidden;
+}
+
+.slider .slide img {
+	height: 100%;
+	width: auto;
+	max-width: 100%;
+	object-fit: contain;
+}
+
+
+@keyframes scroll {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(calc(var(--slideWidth) * var(--totSlides) * -1));
+	}
+}
+
+</style>
+	
+{% endblock head_extra %}
 
 {% block body %}
 <body style="padding-top: 70px;">
@@ -11,9 +63,11 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNavDropdown">
 				<ul class="navbar-nav mx-auto">
+					<!--
 					<li class="nav-item">
 						<a class="nav-link active" aria-current="page" href="#">About Us</a>
 					</li>
+					-->
 					<li class="nav-item">
 						<a class="nav-link" href="#features">Features</a>
 					</li>
@@ -68,8 +122,6 @@
 		</div>
 	</div>
 </div>
-
-
 
 
 <div class="container mt-5" id="features">
@@ -140,6 +192,13 @@
 </div>
 
 
+
+
+
+
+
+
+
 <div class="container mt-5" id="faq">
 	<div class="row">
 		<div class="col-12 mb-3">
@@ -195,6 +254,86 @@
 </div>
 
 </div>
+
+
+
+
+<div class="container mt-5 pb-3" id="carousel">
+	<div class="row">
+		<div class="col-12 mb-3">
+			<h4 class="text-center">Our application is built taking into consideration studies and articles from recognized sources</h4>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+<div class="slider">
+	<div class="slides-track">
+		<div class="slide">
+			<img src="{% static 'img/webp/American_Psychological_Association_logo_500x200.webp' %}" alt="" />
+		</div>
+		<div class="slide">
+			<img src="{% static 'img/webp/Association_for_Psychological_Science_logo_500x200.webp' %}" alt="" />
+		</div>
+		<div class="slide">
+			<img src="{% static 'img/webp/Harvard_University_logo_500x200.webp' %}" alt="" />
+		</div>
+		<div class="slide">
+			<img src="{% static 'img/webp/NIH_National_Institute_of_Mental_Health_logo_500x200.webp' %}" alt="" />
+		</div>
+		<div class="slide">
+			<img src="{% static 'img/webp/National_Center_for_Biotechnology_Information_logo_500x200.webp' %}" alt="" />
+		</div>
+		<div class="slide">
+			<img src="{% static 'img/webp/Society_for_Neuroscience_logo_500x200.webp' %}" alt="" />
+		</div>
+		<div class="slide">
+			<img src="{% static 'img/webp/University_of_Oxford_logo_500x200.webp' %}" alt="" />
+		</div>
+		<div class="slide">
+			<img src="{% static 'img/webp/American_Psychological_Association_logo_500x200.webp' %}" alt="" />
+		</div>
+		<div class="slide">
+			<img src="{% static 'img/webp/Association_for_Psychological_Science_logo_500x200.webp' %}" alt="" />
+		</div>
+		<div class="slide">
+			<img src="{% static 'img/webp/Harvard_University_logo_500x200.webp' %}" alt="" />
+		</div>
+		<div class="slide">
+			<img src="{% static 'img/webp/NIH_National_Institute_of_Mental_Health_logo_500x200.webp' %}" alt="" />
+		</div>
+		<div class="slide">
+			<img src="{% static 'img/webp/National_Center_for_Biotechnology_Information_logo_500x200.webp' %}" alt="" />
+		</div>
+		<div class="slide">
+			<img src="{% static 'img/webp/Society_for_Neuroscience_logo_500x200.webp' %}" alt="" />
+		</div>
+		<div class="slide">
+			<img src="{% static 'img/webp/University_of_Oxford_logo_500x200.webp' %}" alt="" />
+		</div>
+	</div>
+</div>
+
+		</div>
+	</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div class="container">
   <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
