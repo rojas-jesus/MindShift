@@ -79,7 +79,7 @@ class ThoughtDateDeleteView(DeleteView):
 
 
 
-def most_relevant_thoughts(request):
+def most_relevant_thoughts_view(request):
     """
     Most relevant thoughts based on the number of occurrences in the last 30 days.
     """

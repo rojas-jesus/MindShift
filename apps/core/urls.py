@@ -11,7 +11,7 @@ from .views import (
         ThoughtDateDetailView,
         ThoughtDateUpdateView,
         ThoughtDateDeleteView,
-        most_relevant_thoughts, 
+        most_relevant_thoughts_view, 
         ActionListView,
         ActionCreateView, 
         ActionDetailView,
@@ -38,7 +38,7 @@ urlpatterns = [
     path("thought-date/<int:pk>/update/", ThoughtDateUpdateView.as_view(), name = "thought-date-update"),
     path("thought-date/<int:pk>/delete/", ThoughtDateDeleteView.as_view(), name = "thought-date-delete"),
 
-    path("most-relevant-thoughts/", most_relevant_thoughts, name = "most-relevant-thoughts"),
+    path("most-relevant-thoughts/", most_relevant_thoughts_view, name = "most-relevant-thoughts"),
 
     path("actions/", ActionListView.as_view(), name="action-list"),
     path("action/create/", ActionCreateView.as_view(), name="action-create"),
