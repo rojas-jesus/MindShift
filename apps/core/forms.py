@@ -130,6 +130,14 @@ class ThoughtDateForm(forms.ModelForm):
                     "class":"form-control form-control-sm"
                     }
             ),
+            "emotion": forms.widgets.Select(
+                attrs={"class": "form-control form-control-sm",
+                       "id":"emotion-choicesjs",
+                       }
+            ),
+            "emotion_intensity": forms.widgets.Select(
+                attrs={"class": "form-control form-control-sm"}
+            ),
             "hour": forms.widgets.NumberInput(
                 attrs={
                     "class": "form-control form-control-sm"}

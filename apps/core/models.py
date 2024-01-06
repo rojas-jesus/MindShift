@@ -72,6 +72,20 @@ class Thought(Action):
 class ThoughtDate(models.Model):
     timestamp = models.DateTimeField(null=True,blank=True, auto_now_add=True)
     thought = models.ForeignKey("Thought", on_delete=models.SET_NULL, null=True, blank=True)
+    emotion = models.CharField(
+        max_length=20,
+        choices=EMOTION_CHOICES,
+        null=True,
+        blank=True,
+        verbose_name="Emotion"
+    )
+    emotion_intensity = models.CharField(
+        max_length=20,
+        choices=INTENSITY,
+        null=True,
+        blank=True,
+        verbose_name="Emotion Intensity",
+    )
     hour = models.PositiveSmallIntegerField(null=True, blank=True, default=0)
     minute = models.PositiveSmallIntegerField(null=True, blank=True, default=0)
     second = models.PositiveSmallIntegerField(null=True, blank=True, default=0)
