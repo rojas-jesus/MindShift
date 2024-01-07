@@ -17,6 +17,9 @@ def home(request):
 class ThoughtListView(ListView):
     model = Thought
     template_name = "core/thought/list.html"
+    
+    def get_queryset(self):
+        return Thought.objects.filter(user=self.request.user)
 
 
 class ThoughtCreateView(CreateView):
@@ -50,6 +53,8 @@ class ThoughtDateListView(ListView):
     model = ThoughtDate
     template_name = "core/thoughtdate/list.html"
 
+    def get_queryset(self):
+        return ThoughtDate.objects.filter(user=self.request.user)
 
 class ThoughtDateCreateView(CreateView):
     model = ThoughtDate

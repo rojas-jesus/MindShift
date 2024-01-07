@@ -90,6 +90,7 @@ class ThoughtDate(models.Model):
     minute = models.PositiveSmallIntegerField(null=True, blank=True, default=0)
     second = models.PositiveSmallIntegerField(null=True, blank=True, default=0)
     duration_total = models.PositiveBigIntegerField(null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def save(self, *args, **kargs):
         self.duration_total = (self.hour*3600)+(self.minute*60)+(self.second)
