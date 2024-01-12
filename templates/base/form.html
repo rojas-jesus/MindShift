@@ -1,54 +1,53 @@
 {% extends "base/body.html" %}
 
 {% block content %}
-<form method="post" action="." >
-	<div class="row pt-3 pb-3">
-		<div class="col-6 mx-auto">
-			<div class="card text-dark bg-light border-light shadow" >
-				<div class="card-header bg-transparent border-light">
-					
-					<h5 class="card-title text-center">
-						{% block card_title %}
-						{% endblock %}
-					</h5>	
-				</div>
-				<!-- /. card-header -->
-
-				<div class="card-body">
-					<div class="form-group">
-					{% csrf_token %}
-					{% for item in form %}
-					<div class="mb-3">
-						{% if item.field.required == True %}
-						<label class="form-label" for="{{item.auto_id}}"><b>{{item.label}}</b><span style="color:red;"> *</span></label>
-						{% else %}
-						<label class="form-label" for="{{item.auto_id}}"><b>{{item.label}}</b></label>
-						{% endif %}
-						{{ item }}
-						{% if item.help_text %}
-						    <div class="form-text ">
-							{{ item.help_text }}
-							</div>
-						{% endif %}
-					</div>
-					{% endfor %}
-					</div>
-				</div>
-				<!-- /. card-body -->
-
-				<div class="card-footer bg-transparent border-light">
-					<div class="d-grid gap-2 col-12 mx-auto ">
-						<button type "submit" class="btn btn-outline-primary rounded-pill"><i class="bi bi-floppy"></i>&nbsp;Save</button>
-					</div>
-					<br/>
-					<a class="btn btn-link btn-sm float-start" href="
-					   {% block cancel_button_url %}
-					   {% endblock %}
-					">Cancel</a>
-				</div>
-				<!-- card-footer -->
+<div class="row pt-3 pb-3">
+	<div class="col-6 mx-auto">
+		<div class="card text-dark bg-light border-light shadow" >
+			<div class="card-header bg-transparent border-light">
+				
+				<h5 class="card-title text-center">
+					{% block card_title %}
+					{% endblock %}
+				</h5>	
 			</div>
+			<!-- /. card-header -->
+			<form method="post" action="." >
+			{% csrf_token %}
+
+			<div class="card-body">
+				<div class="form-group">
+				{% for item in form %}
+				<div class="mb-3">
+					{% if item.field.required == True %}
+					<label class="form-label" for="{{item.auto_id}}"><b>{{item.label}}</b><span style="color:red;"> *</span></label>
+					{% else %}
+					<label class="form-label" for="{{item.auto_id}}"><b>{{item.label}}</b></label>
+					{% endif %}
+					{{ item }}
+					{% if item.help_text %}
+					    <div class="form-text ">
+						{{ item.help_text }}
+						</div>
+					{% endif %}
+				</div>
+				{% endfor %}
+				</div>
+			</div>
+			<!-- /. card-body -->
+			<div class="card-footer bg-transparent border-light">
+				<div class="d-grid gap-2 col-12 mx-auto ">
+					<button type "submit" class="btn btn-outline-primary rounded-pill"><i class="bi bi-floppy"></i>&nbsp;Save</button>
+				</div>
+				<br/>
+				<a class="btn btn-link btn-sm float-start" href="
+				   {% block cancel_button_url %}
+				   {% endblock %}
+				">Cancel</a>
+			</div>
+			<!-- card-footer -->
+			</form>
 		</div>
 	</div>
-</form>
+</div>
 {% endblock %}
