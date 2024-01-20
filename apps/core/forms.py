@@ -6,7 +6,7 @@ from .models import Thought, ThoughtDate, Action
 class ActionForm(forms.ModelForm):
     class Meta:
         model = Action
-        exclude = ['intensity','user']
+        exclude = ["intensity", "user", "emotion", "emotion_intensity"]
         widgets = {
             "name": forms.widgets.TextInput(
                 attrs={
@@ -71,7 +71,7 @@ class ActionForm(forms.ModelForm):
 class ThoughtForm(forms.ModelForm):
     class Meta:
         model = Thought
-        exclude = ['intensity', 'user']
+        exclude = ["intensity", "user", "emotion","emotion_intensity"]
         widgets = {
             "name": forms.widgets.TextInput(
                 attrs={
