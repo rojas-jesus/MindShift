@@ -28,6 +28,11 @@ class ThoughtCreateView(CreateView):
     template_name = "core/thought/create.html"
     success_url = reverse_lazy("core:thought-list")
 
+    def form_valid(self, form):
+        """Auto-assign current user to 'user' field of Thought form"""
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
 
 class ThoughtDetailView(DetailView):
     model = Thought
@@ -127,6 +132,7 @@ class ActionCreateView(CreateView):
     success_url = reverse_lazy("core:action-list")
 
     def form_valid(self, form):
+        """Auto-assign current user to 'user' field of Action form"""
         form.instance.user = self.request.user
         return super().form_valid(form)
 
