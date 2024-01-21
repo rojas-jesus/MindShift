@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime, time
 
 EMOTION_CHOICES = [
     ("sad", "Sad"),
@@ -52,7 +53,9 @@ class Action(models.Model):
 
 
 class ActionDate(models.Model):
-    timestamp = models.DateField(null=True,blank=True, auto_now_add=True)
+    date = models.DateField(null=True,blank=True)
+    time = models.TimeField(null=True, blank=True)
+    date_time = models.DateTimeField(null=True, blank=True)
     hour = models.PositiveSmallIntegerField(null=True)
     minute = models.PositiveSmallIntegerField(null=True)
     second = models.PositiveSmallIntegerField(null=True, blank=True)
@@ -61,10 +64,15 @@ class ActionDate(models.Model):
 
     def save(self, *args, **kargs):
         self.duration_total = (self.hour*3600)+(self.minute*60)+(self.second)
+
+        if self.time:
+            self.date_time = datetime.combine(self.date, self.time)
+        else:
+            self.date_time = datetime.combine(self.date, time())
         super().save(*args, **kargs)
 
     def __str__(self):
-        return f"{self.action} | {self.timestamp} "
+        return f"{self.action} | {self.date} "
 
 class Thought(Action):
     pass
