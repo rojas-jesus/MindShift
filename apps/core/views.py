@@ -211,3 +211,5 @@ def action_emotion_chart_view(request):
         "action_emotion_angry": action_emotion_angry,
     }
     return render(request, "core/action/emotionchart.html", context)
+
+

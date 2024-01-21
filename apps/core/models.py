@@ -56,11 +56,26 @@ class ActionDate(models.Model):
     date = models.DateField(null=True,blank=True)
     time = models.TimeField(null=True, blank=True)
     date_time = models.DateTimeField(null=True, blank=True)
-    hour = models.PositiveSmallIntegerField(null=True)
-    minute = models.PositiveSmallIntegerField(null=True)
-    second = models.PositiveSmallIntegerField(null=True, blank=True)
     action = models.ForeignKey("Action", on_delete=models.SET_NULL, null=True, blank=True)
+    emotion = models.CharField(
+        max_length=20,
+        choices=EMOTION_CHOICES,
+        null=True,
+        blank=True,
+        verbose_name="Emotion"
+    )
+    emotion_intensity = models.CharField(
+        max_length=20,
+        choices=INTENSITY,
+        null=True,
+        blank=True,
+        verbose_name="Emotion Intensity",
+    )
+    hour = models.PositiveSmallIntegerField(null=True, blank=True, default=0)
+    minute = models.PositiveSmallIntegerField(null=True, blank=True, default=0)
+    second = models.PositiveSmallIntegerField(null=True, blank=True, default=0)
     duration_total = models.PositiveBigIntegerField(null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def save(self, *args, **kargs):
         self.duration_total = (self.hour*3600)+(self.minute*60)+(self.second)
