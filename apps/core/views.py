@@ -3,7 +3,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DetailView, D
 from django.urls import reverse_lazy
 from django.core.exceptions import PermissionDenied
 
-from .models import Thought, ThoughtDate, Action 
+from .models import Thought, ThoughtDate, Action, ActionDate
 from .forms import ThoughtForm, ThoughtDateForm, ActionForm 
 
 from datetime import timedelta, datetime
@@ -212,4 +212,37 @@ def action_emotion_chart_view(request):
     }
     return render(request, "core/action/emotionchart.html", context)
 
+
+
+def actiondate_sad_intensity_chart_view(request):
+    """
+    ActionDate Chart that displays the number of times a sad emotion has been experienced, based in intensity. 
+    """
+    current_date = datetime.now()
+    thirty_days_ago_date = current_date - timedelta(days=30)
+    current_date = current_date.strftime("%Y-%m-%d %H:%M:%S")
+    thirty_days_ago_date = thirty_days_ago_date.strftime("%Y-%m-%d %H:%M:%S")
+
+    user = request.user
+    last_thirty_days = ActionDate.objects.filter(date_time__range=(thirty_days_ago_date, current_date))
+
+    last_thirty_days_sad_low = last_thirty_days.filter(user=user,emotion="sad",emotion_intensity="low")
+    last_thirty_days_sad_low = last_thirty_days_sad_low.count()
+
+    last_thirty_days_sad_medium = last_thirty_days.filter(user=user,emotion="sad",emotion_intensity="medium")
+    last_thirty_days_sad_medium = last_thirty_days_sad_medium.count()
+
+    last_thirty_days_sad_high = last_thirty_days.filter(user=user,emotion="sad",emotion_intensity="high")
+    last_thirty_days_sad_high = last_thirty_days_sad_high.count()
+
+    last_thirty_days_sad_very_high = last_thirty_days.filter(user=user,emotion="sad",emotion_intensity="very high")
+    last_thirty_days_sad_very_high = last_thirty_days_sad_very_high.count()
+
+    context = {
+        "last_thirty_days_sad_low": last_thirty_days_sad_low,
+        "last_thirty_days_sad_medium": last_thirty_days_sad_medium,
+        "last_thirty_days_sad_high": last_thirty_days_sad_high,
+        "last_thirty_days_sad_very_high": last_thirty_days_sad_very_high,
+    }
+    return render(request, "core/actiondate/chart_sad_intensity.html", context)
 

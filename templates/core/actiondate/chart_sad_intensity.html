@@ -1,0 +1,63 @@
+{% extends "base/body.html" %}
+{% load static %}
+
+{% block head_extra %}
+	<script src="{% static 'lib/apexcharts.js-3.44.2/dist/apexcharts.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="col-6 mx-auto pt-3 pb-3">
+	<div class="card text-dark bg-light border-light shadow" >
+		<div class="card-header bg-transparent border-light">
+			<h5 class="card-title text-center">
+				{% block card_title %}
+				Action Date Sad Intensity Chart
+				{% endblock %}
+			</h5>	
+		</div>
+		<!-- /. card-header -->
+
+		<div class="card-body">
+			<div id="chart" >
+			</div>
+		</div>
+		<!-- /. card-body -->
+
+		<div class="card-footer bg-transparent border-light">
+		<div class="d-grid gap-2 col-12 mx-auto ">
+			<a class="btn btn-outline-primary rounded-pill" href="{% block go_back_button_url %}{% endblock %}">
+			<i class="bi bi-arrow-left"></i>
+			Go Back
+			</a>
+		</div>
+		</div>
+		<!-- card-footer -->
+	</div>
+</div>
+{% endblock content %}
+
+{% block javascript %}
+<script>
+        var options = {
+		series: [{{last_thirty_days_sad_low}}, {{last_thirty_days_sad_medium}}, {{last_thirty_days_sad_high}}, {{last_thirty_days_sad_very_high}}],
+          chart: {
+          width: "90%",
+          type: 'pie',
+        },
+        labels: ['Low', 'Medium', 'High', 'Very High'],
+	colors: ['#ffcfcf', '#E9D502', '#FF4F00', '#D0342C'], 
+        responsive: [{
+          breakpoint: 1080,
+          options: {
+            chart: {
+            },
+            legend: {
+              position: 'bottom'
+            }
+          }
+        }]
+        };
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+</script>
+{% endblock javascript %}
