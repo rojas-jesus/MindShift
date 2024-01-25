@@ -6,7 +6,7 @@ from django.core.exceptions import PermissionDenied
 from .models import Thought, ThoughtDate, Action, ActionDate
 from .forms import ThoughtForm, ThoughtDateForm, ActionForm 
 
-from datetime import timedelta, datetime
+from datetime import date, timedelta, datetime
 from django.db.models import Count
 
 # Thought Views
@@ -245,4 +245,27 @@ def actiondate_sad_intensity_chart_view(request):
         "last_thirty_days_sad_very_high": last_thirty_days_sad_very_high,
     }
     return render(request, "core/actiondate/chart_sad_intensity.html", context)
+
+
+def actiondate_today_sad_intensity_chart_view(request):
+    """
+    ActionDate Chart that displays the number of times a sad emotion has been experienced, categorized by intensity, for the current user date.
+    """
+    user = request.user
+    today_date = date.today()
+    today_date_time = today_date.strftime("%Y-%m-%d %H:%M:%S")
+    today = ActionDate.objects.filter(date_time__gte=today_date_time)
+
+    today_sad_low = today.filter(user=user,emotion="sad",emotion_intensity="low").count()
+    today_sad_medium = today.filter(user=user,emotion="sad",emotion_intensity="medium").count()
+    today_sad_high = today.filter(user=user,emotion="sad",emotion_intensity="high").count()
+    today_sad_very_high = today.filter(user=user,emotion="sad",emotion_intensity="very high").count()
+
+    context = {
+        "today_sad_low": today_sad_low,
+        "today_sad_medium": today_sad_medium,
+        "today_sad_high": today_sad_high,
+        "today_sad_very_high": today_sad_very_high,
+    }
+    return render(request, "core/actiondate/chart_today_sad_intensity.html", context)
 
