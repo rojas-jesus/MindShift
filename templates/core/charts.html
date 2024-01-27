@@ -1,0 +1,157 @@
+{% extends "base/body.html" %}
+{% load static %}
+
+{% block head_extra %}
+	<script src="{% static 'lib/apexcharts.js-3.44.2/dist/apexcharts.js' %}"></script>
+
+<style type="text/css" media="screen">
+.btn.btn-primary{
+  background-color: #f9f9f9;
+  color: #333333;
+  border: #f9f9f9;
+}
+
+.btn-primary:hover {
+  color: #f9f9f9;
+  background-color: #333333;
+}
+
+.btn.btn-primary:active{
+  color: #f9f9f9;
+  background-color: #333333;
+}
+
+/*
+.btn-standard{
+  background-color: #f9f9f9;
+  color: red;
+  border: #f9f9f9;
+}
+
+.btn-standard:hover {
+  color: #f9f9f9;
+  background-color: red;
+
+}
+.btn-standard:active{
+  color: #f9f9f9;
+  background-color: red;
+}
+*/
+</style>
+
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-12 mb-3">
+			<h1 class="text-center display-4"> Charts </h1>
+		</div>
+	</div>
+	<div class="row "><!--
+		<div class="col-6 col-sm-3 text-center bg-warning text-dark p-3 mb-2">
+			<button type="button" href="#"class="w-100 btn bg-warning text-dark">
+			<h1 class="display-1"><i class="bi bi-pie-chart-fill"></i></h1>
+				sad thoughts 
+			</button>
+			</a>
+		</div>-->
+		<div class="col-6 col-sm-3 text-center p-1">
+			<button type="button" href="#"class="w-100 btn btn-primary" style="">
+			<h1 class="display-1">
+				<i class="bi bi-pie-chart-fill"></i>
+				<i class="bi bi-emoji-frown-fill"></i>
+			</h1>
+			<p>
+			<!--ActionDate Sadness Intensity  -->
+			<!--number of times a sad emotion has been experienced in relation to actions, categorized by intensity-->
+			Frequency of intense sadness in action-related emotions.
+			</p> 
+			</button>
+		</div>
+		<div class="col-6 col-sm-3 text-center p-1">
+			<button type="button" href="#"class="w-100 btn btn-primary" style="">
+			<h1 class="display-1">
+				<i class="bi bi-pie-chart-fill"></i>
+				<i class="bi bi-emoji-angry-fill"></i>
+			</h1>
+			<p>
+			Action Date Sadness Intensity  
+			</p> 
+			</button>
+		</div>
+		<div class="col-6 col-sm-3 text-center p-1">
+			<button type="button" href="#"class="w-100 btn btn-primary" style="">
+			Action Date - Times a sad emotion has been experienced, categorized by intensity.
+				<i class="bi bi-pie-chart-fill"></i>
+				<i class="bi bi-emoji-angry-fill"></i>
+			</button>
+		</div>
+		<div class="col-6 col-sm-3 text-center p-1">
+			<a href="https://www.freecodecamp.org/" class="w-100 btn btn-primary">
+			Actions - Times a sad emotion has been experienced, categorized by intensity.
+			<h2>
+				<i class="bi bi-pie-chart-fill"></i>
+				<i class="bi bi-emoji-angry-fill"></i>
+			</h2>
+			</a>
+		</div>
+	</div>
+	<div class="row ">
+		<div class="col-6 col-sm-3 text-center p-1">
+			<a href="https://www.freecodecamp.org/" class="w-100 btn btn-primary">
+			Actions - Times a sad emotion has been experienced, categorized by intensity.
+			<h2>
+				<i class="bi bi-pie-chart-fill"></i>
+				<i class="bi bi-emoji-frown-fill"></i>
+			</h2>
+			</a>
+		</div>
+		<div class="col-6 col-sm-3 text-center p-1">
+			<a href="https://www.freecodecamp.org/" class="w-100 btn btn-primary">
+			Actions - Times an anger emotion has been experienced, categorized by intensity.
+			<h2>
+				<i class="bi bi-pie-chart-fill"></i>
+				<i class="bi bi-emoji-angry-fill"></i>
+			</h2>
+			</a>
+		</div>
+		<div class="col-6 col-sm-3 text-center p-1">
+			<a href="https://www.freecodecamp.org/" class="w-100 btn btn-primary">
+			Actions - Times a happy emotion has been experienced, categorized by intensity.
+			<h2>
+				<i class="bi bi-pie-chart-fill"></i>
+				<i class="bi bi-emoji-smile-fill"></i>
+			</h2>
+			</a>
+		</div>
+
+	</div>
+	<div class="row ">
+		<!--
+		<div class="col-6 col-sm-3 text-center ">
+			<button type="button" href="#"class="w-100 btn btn-lg btn-warning">
+			<h1 class="display-1"><i class="bi bi-pie-chart-fill"></i></h1>
+				sad thoughts 
+			</button>
+			</a>
+		</div>
+		<div class="col-6 col-sm-3 text-center bg-warning">
+			<a href="{{ url_lista }}" class="btn w-100">
+			<h1 class="display-1"><i class="bi bi-pie-chart-fill"></i></h1>
+			sad thoughts 
+			</a>
+		</div>
+		<div class="col-6 col-sm-3 text-center bg-warning">
+			<a href="{{ url_lista }}" class="btn w-100 disabled">
+			<h1 class="display-1"><i class="bi bi-pie-chart-fill"></i></h1>
+			sad thoughts 
+			</a>
+		</div>-->
+	</div>
+</div>
+{% endblock content %}
+
+{% block javascript %}
+{% endblock javascript %}

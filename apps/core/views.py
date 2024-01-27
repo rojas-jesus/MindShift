@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView, TemplateView
 from django.urls import reverse_lazy
 from django.core.exceptions import PermissionDenied
 
@@ -268,4 +268,8 @@ def actiondate_today_sad_intensity_chart_view(request):
         "today_sad_very_high": today_sad_very_high,
     }
     return render(request, "core/actiondate/chart_today_sad_intensity.html", context)
+
+
+class ChartsView(TemplateView):
+    template_name = "core/charts.html"
 

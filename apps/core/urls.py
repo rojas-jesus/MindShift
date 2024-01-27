@@ -20,6 +20,7 @@ from .views import (
         action_emotion_chart_view,
         actiondate_sad_intensity_chart_view,
         actiondate_today_sad_intensity_chart_view,
+        ChartsView,
         
         )
 
@@ -54,5 +55,6 @@ urlpatterns = [
 
     path("action-date-sad-intensity-chart/", actiondate_sad_intensity_chart_view, name="action-date-sad-intensity-chart"),
     path("action-date-today-sad-intensity-chart/", actiondate_today_sad_intensity_chart_view, name="action-date-today-sad-intensity-chart"),
+    path("charts/", ChartsView.as_view(), name="charts"),
 
 ]
