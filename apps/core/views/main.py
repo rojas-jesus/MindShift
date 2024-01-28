@@ -3,8 +3,8 @@ from django.views.generic import ListView, CreateView, UpdateView, DetailView, D
 from django.urls import reverse_lazy
 from django.core.exceptions import PermissionDenied
 
-from .models import Thought, ThoughtDate, Action, ActionDate
-from .forms import ThoughtForm, ThoughtDateForm, ActionForm 
+from ..models import Thought, ThoughtDate, Action, ActionDate
+from ..forms import ThoughtForm, ThoughtDateForm, ActionForm 
 
 from datetime import date, timedelta, datetime
 from django.db.models import Count
