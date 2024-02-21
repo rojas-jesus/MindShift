@@ -17,9 +17,11 @@ from .views import (
         ActionDetailView,
         ActionUpdateView,
         ActionDeleteView,
-        action_emotion_chart_view,
-        actiondate_sad_intensity_chart_view,
-        actiondate_today_sad_intensity_chart_view,
+        #action_emotion_chart_view,
+        #actiondate_sad_intensity_chart_view,
+        #actiondate_today_sad_intensity_chart_view,
+        # Charts
+        actiondate_sad_intensity_last_30_days_view,
         ChartsView,
         
         )
@@ -51,10 +53,9 @@ urlpatterns = [
     path("action/<pk>/delete/", ActionDeleteView.as_view(), name="action-delete"),
 
 
-    path("action-emotion-chart/", action_emotion_chart_view, name="action-emotion-chart"),
-
-    path("action-date-sad-intensity-chart/", actiondate_sad_intensity_chart_view, name="action-date-sad-intensity-chart"),
-    path("action-date-today-sad-intensity-chart/", actiondate_today_sad_intensity_chart_view, name="action-date-today-sad-intensity-chart"),
+    #path("action-emotion-chart/", action_emotion_chart_view, name="action-emotion-chart"),
+    #path("action-date-sad-intensity-chart/", actiondate_sad_intensity_chart_view, name="action-date-sad-intensity-chart"),
+    #path("action-date-today-sad-intensity-chart/", actiondate_today_sad_intensity_chart_view, name="action-date-today-sad-intensity-chart"),
+    path("action-date/chart/sad-intensity-last-30-days/", actiondate_sad_intensity_last_30_days_view, name="action-date-chart-sad-intensity-last-30-days"),
     path("charts/", ChartsView.as_view(), name="charts"),
-
 ]

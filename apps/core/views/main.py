@@ -214,62 +214,6 @@ def action_emotion_chart_view(request):
 
 
 
-def actiondate_sad_intensity_chart_view(request):
-    """
-    ActionDate Chart that displays the number of times a sad emotion has been experienced, based in intensity. 
-    """
-    current_date = datetime.now()
-    thirty_days_ago_date = current_date - timedelta(days=30)
-    current_date = current_date.strftime("%Y-%m-%d %H:%M:%S")
-    thirty_days_ago_date = thirty_days_ago_date.strftime("%Y-%m-%d %H:%M:%S")
-
-    user = request.user
-    last_thirty_days = ActionDate.objects.filter(date_time__range=(thirty_days_ago_date, current_date))
-
-    last_thirty_days_sad_low = last_thirty_days.filter(user=user,emotion="sad",emotion_intensity="low")
-    last_thirty_days_sad_low = last_thirty_days_sad_low.count()
-
-    last_thirty_days_sad_medium = last_thirty_days.filter(user=user,emotion="sad",emotion_intensity="medium")
-    last_thirty_days_sad_medium = last_thirty_days_sad_medium.count()
-
-    last_thirty_days_sad_high = last_thirty_days.filter(user=user,emotion="sad",emotion_intensity="high")
-    last_thirty_days_sad_high = last_thirty_days_sad_high.count()
-
-    last_thirty_days_sad_very_high = last_thirty_days.filter(user=user,emotion="sad",emotion_intensity="very high")
-    last_thirty_days_sad_very_high = last_thirty_days_sad_very_high.count()
-
-    context = {
-        "last_thirty_days_sad_low": last_thirty_days_sad_low,
-        "last_thirty_days_sad_medium": last_thirty_days_sad_medium,
-        "last_thirty_days_sad_high": last_thirty_days_sad_high,
-        "last_thirty_days_sad_very_high": last_thirty_days_sad_very_high,
-    }
-    return render(request, "core/actiondate/chart_sad_intensity.html", context)
-
-
-def actiondate_today_sad_intensity_chart_view(request):
-    """
-    ActionDate Chart that displays the number of times a sad emotion has been experienced, categorized by intensity, for the current user date.
-    """
-    user = request.user
-    today_date = date.today()
-    today_date_time = today_date.strftime("%Y-%m-%d %H:%M:%S")
-    today = ActionDate.objects.filter(date_time__gte=today_date_time)
-
-    today_sad_low = today.filter(user=user,emotion="sad",emotion_intensity="low").count()
-    today_sad_medium = today.filter(user=user,emotion="sad",emotion_intensity="medium").count()
-    today_sad_high = today.filter(user=user,emotion="sad",emotion_intensity="high").count()
-    today_sad_very_high = today.filter(user=user,emotion="sad",emotion_intensity="very high").count()
-
-    context = {
-        "today_sad_low": today_sad_low,
-        "today_sad_medium": today_sad_medium,
-        "today_sad_high": today_sad_high,
-        "today_sad_very_high": today_sad_very_high,
-    }
-    return render(request, "core/actiondate/chart_today_sad_intensity.html", context)
-
-
 class ChartsView(TemplateView):
     template_name = "core/charts.html"
 
