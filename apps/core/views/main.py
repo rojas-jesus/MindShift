@@ -67,6 +67,11 @@ class ThoughtDateCreateView(CreateView):
     template_name = "core/thoughtdate/form.html"
     success_url = reverse_lazy("core:thought-date-list")  
 
+    def form_valid(self, form):
+        """Auto-assign current user to 'user' field of ThoughtDate form"""
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
 
 class ThoughtDateDetailView(DetailView):
     model = ThoughtDate

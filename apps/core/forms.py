@@ -117,7 +117,7 @@ class ThoughtForm(forms.ModelForm):
 class ThoughtDateForm(forms.ModelForm):
     class Meta:
         model = ThoughtDate
-        exclude = ["duration_total"]
+        exclude = ["duration_total","user"]
         help_texts = {
                 "hour": _("If the thought lasted less than an hour, you can skip this field."),
                 "minute": _("If the thought lasted less than a minute, you can skip this field."),
