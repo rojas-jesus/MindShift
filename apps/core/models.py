@@ -19,33 +19,13 @@ INTENSITY = [
 
 class Action(models.Model):
     name = models.CharField(max_length=150)
-    intensity = models.CharField(
-        max_length=20,
-        choices=INTENSITY, 
-        null=True, 
-        blank=True,
-        verbose_name="Intensity",
-    )
     description = models.TextField(verbose_name="Description")
     advantages = models.TextField(null=True, blank=True, verbose_name="Advantages")
     disadvantages = models.TextField(null=True, blank=True, verbose_name="Disadvantages")
     facilitator  = models.ManyToManyField("Facilitator", blank=True)
     thought_facilitator = models.ManyToManyField("Thought", blank=True, related_name="facilitator_thought") 
     action_facilitator = models.ManyToManyField("Action", blank=True, related_name="facilitator_action") 
-    emotion = models.CharField(
-        max_length=20,
-        choices=EMOTION_CHOICES,
-        null=True,
-        blank=True,
-        verbose_name="Emotion"
-    )
-    emotion_intensity = models.CharField(
-        max_length=20,
-        choices=INTENSITY,
-        null=True,
-        blank=True,
-        verbose_name="Emotion Intensity",
-    )
+    environment_facilitator = models.ManyToManyField("Environment", blank=True, related_name="facilitator_environment") 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -129,4 +109,7 @@ class Facilitator(models.Model):
 
     def __str__(self):
         return self.name
+
+class Environment(Facilitator):
+    pass
 
