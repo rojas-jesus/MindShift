@@ -23,7 +23,8 @@ from .views import (
         # Charts
         actiondate_sad_intensity_last_30_days_view,
         ChartsView,
-        
+        FacilitatorCreateView,
+        FacilitatorRetrieveView,
         )
 
 
@@ -58,4 +59,10 @@ urlpatterns = [
     #path("action-date-today-sad-intensity-chart/", actiondate_today_sad_intensity_chart_view, name="action-date-today-sad-intensity-chart"),
     path("action-date/chart/sad-intensity-last-30-days/", actiondate_sad_intensity_last_30_days_view, name="action-date-chart-sad-intensity-last-30-days"),
     path("charts/", ChartsView.as_view(), name="charts"),
+
+    # Api
+
+    path("facilitator/create/", FacilitatorCreateView.as_view(), name="facilitator-create"),
+
+    path("facilitator/<id>/", FacilitatorRetrieveView.as_view(), name="facilitator-retrieve"),
 ]
