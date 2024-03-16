@@ -37,7 +37,9 @@ LOCAL_APPS = [
     "apps.homepage",
 ]
 
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = [
+    "rest_framework",
+]
 
 DJANGO_APPS = [
     'django.contrib.admin',
