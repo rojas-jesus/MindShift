@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime, time
+import uuid
 
 EMOTION_CHOICES = [
     ("sad", "Sad"),
@@ -104,6 +105,7 @@ class ThoughtDate(models.Model):
 
 
 class Facilitator(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=150)
     description = models.TextField(verbose_name="Description")
 
