@@ -6,6 +6,8 @@ from rest_framework.generics import (
     DestroyAPIView,
 )
 
+from rest_framework.permissions import IsAuthenticated
+
 from ..models import Facilitator
 from ..serializers import FacilitatorSerializer
 
@@ -19,6 +21,7 @@ class FacilitatorsListView(ListAPIView):
 class FacilitatorCreateView(CreateAPIView):
     queryset = Facilitator.objects.all()
     serializer_class = FacilitatorSerializer
+    permission_classes = [IsAuthenticated]
 
 
 class FacilitatorRetrieveView(RetrieveAPIView):
