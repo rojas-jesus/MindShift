@@ -25,6 +25,7 @@ from .views import (
         ChartsView,
         FacilitatorCreateView,
         FacilitatorRetrieveView,
+        FacilitatorListView,
         EnvironmentCreateView,
         EnvironmentRetrieveView,
         )
@@ -64,6 +65,7 @@ urlpatterns = [
 
     # Api
 
+    path("facilitator/list/", FacilitatorListView.as_view(), name="facilitator-list"),
     path("facilitator/create/", FacilitatorCreateView.as_view(), name="facilitator-create"),
     path("facilitator/<id>/", FacilitatorRetrieveView.as_view(), name="facilitator-retrieve"),
 
