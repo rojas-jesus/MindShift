@@ -28,6 +28,7 @@ class FacilitatorRetrieveView(RetrieveAPIView):
     queryset = Facilitator.objects.all()
     serializer_class = FacilitatorSerializer
     permission_classes = [IsAuthenticated]
+    filter_backends = (IsOwnerFilterBackend,)
     lookup_field = "id"
 
 
@@ -35,6 +36,7 @@ class FacilitatorUpdateView(UpdateAPIView):
     queryset = Facilitator.objects.all()
     serializer_class = FacilitatorSerializer
     permission_classes = [IsAuthenticated]
+    filter_backends = (IsOwnerFilterBackend,)
     lookup_field = "id"
     fields = ("id", "name", "description")
 
@@ -43,5 +45,6 @@ class FacilitatorDeleteView(DestroyAPIView):
     queryset = Facilitator.objects.all()
     serializer_class = FacilitatorSerializer
     permission_classes = [IsAuthenticated]
+    filter_backends = (IsOwnerFilterBackend)
     lookup_field = "id"
 
