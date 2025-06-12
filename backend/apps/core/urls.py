@@ -23,9 +23,13 @@ from .views import (
         # Charts
         actiondate_sad_intensity_last_30_days_view,
         ChartsView,
+
+        FacilitatorListView,
         FacilitatorCreateView,
         FacilitatorRetrieveView,
-        FacilitatorListView,
+        FacilitatorUpdateView,
+        FacilitatorDeleteView,
+
         EnvironmentCreateView,
         EnvironmentRetrieveView,
         )
@@ -64,10 +68,11 @@ urlpatterns = [
     path("charts/", ChartsView.as_view(), name="charts"),
 
     # Api
-
-    path("facilitator/list/", FacilitatorListView.as_view(), name="facilitator-list"),
+    path("facilitators/", FacilitatorListView.as_view(), name="facilitator-list"),
     path("facilitator/create/", FacilitatorCreateView.as_view(), name="facilitator-create"),
-    path("facilitator/<id>/", FacilitatorRetrieveView.as_view(), name="facilitator-retrieve"),
+    path("facilitator/<uuid:id>/", FacilitatorRetrieveView.as_view(), name="facilitator-retrieve"),
+    path("facilitator/<uuid:id>/update/", FacilitatorUpdateView.as_view(), name="facilitator-update"),
+    path("facilitator/<uuid:id>/delete/", FacilitatorDeleteView.as_view(), name="facilitator-delete"),
 
     path("environment/create/", EnvironmentCreateView.as_view(), name="environment-create"),
     path("environment/<id>/", EnvironmentRetrieveView.as_view(), name="environment-retrieve"),
