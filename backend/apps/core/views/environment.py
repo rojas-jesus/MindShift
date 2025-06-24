@@ -5,37 +5,43 @@ from rest_framework.generics import (
     UpdateAPIView,
     DestroyAPIView,
 )
+from rest_framework.permissions import IsAuthenticated 
 
 from ..models import Environment
 from ..serializers import EnvironmentSerializer
+from ..filters import IsOwnerFilterBackend
 
-
-# Environment views
-class EnvironmentsListView(ListAPIView):
+class EnvironmentListView(ListAPIView):
     queryset = Environment.objects.all()
     serializer_class = EnvironmentSerializer
-
+    permission_classes = [IsAuthenticated]
+    filter_backends = (IsOwnerFilterBackend,)
 
 class EnvironmentCreateView(CreateAPIView):
     queryset = Environment.objects.all()
     serializer_class = EnvironmentSerializer
+    permission_classes = [IsAuthenticated]
 
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 class EnvironmentRetrieveView(RetrieveAPIView):
     queryset = Environment.objects.all()
     serializer_class = EnvironmentSerializer
+    permission_classes = [IsAuthenticated]
+    filter_backends = (IsOwnerFilterBackend,)
     lookup_field = "id"
-
 
 class EnvironmentUpdateView(UpdateAPIView):
     queryset = Environment.objects.all()
     serializer_class = EnvironmentSerializer
+    permission_classes = [IsAuthenticated]
+    filter_backends = (IsOwnerFilterBackend,)
     lookup_field = "id"
-    fields = ("id", "name", "description")
-
 
 class EnvironmentDeleteView(DestroyAPIView):
     queryset = Environment.objects.all()
     serializer_class = EnvironmentSerializer
+    permission_classes = [IsAuthenticated]
+    filter_backends = (IsOwnerFilterBackend,)
     lookup_field = "id"
-

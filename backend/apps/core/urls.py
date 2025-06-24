@@ -29,9 +29,11 @@ from .views import (
         FacilitatorRetrieveView,
         FacilitatorUpdateView,
         FacilitatorDeleteView,
-
+        EnvironmentListView,
         EnvironmentCreateView,
         EnvironmentRetrieveView,
+        EnvironmentUpdateView,
+        EnvironmentDeleteView
         )
 
 
@@ -74,6 +76,9 @@ urlpatterns = [
     path("facilitator/<uuid:id>/update/", FacilitatorUpdateView.as_view(), name="facilitator-update"),
     path("facilitator/<uuid:id>/delete/", FacilitatorDeleteView.as_view(), name="facilitator-delete"),
 
+    path("environments/", EnvironmentListView.as_view(), name="environment-list"),
     path("environment/create/", EnvironmentCreateView.as_view(), name="environment-create"),
-    path("environment/<id>/", EnvironmentRetrieveView.as_view(), name="environment-retrieve"),
+    path("environment/<uuid:id>/", EnvironmentRetrieveView.as_view(), name="environment-retrieve"),
+    path("environment/<uuid:id>/update/", EnvironmentUpdateView.as_view(), name="environment-update"),
+    path("environment/<uuid:id>/delete/", EnvironmentDeleteView.as_view(), name="environment-delete"),
 ]
