@@ -33,7 +33,9 @@ from .views import (
         EnvironmentCreateView,
         EnvironmentRetrieveView,
         EnvironmentUpdateView,
-        EnvironmentDeleteView
+        EnvironmentDeleteView,
+
+        UserThoughtsTextView,
         )
 
 
@@ -81,4 +83,7 @@ urlpatterns = [
     path("environment/<uuid:id>/", EnvironmentRetrieveView.as_view(), name="environment-retrieve"),
     path("environment/<uuid:id>/update/", EnvironmentUpdateView.as_view(), name="environment-update"),
     path("environment/<uuid:id>/delete/", EnvironmentDeleteView.as_view(), name="environment-delete"),
+
+
+    path("ai/user-thoughts-text/", UserThoughtsTextView.as_view(), name="ai-user-thoughts-text"),
 ]
