@@ -1,6 +1,21 @@
 from django.urls import path
 from .views import (
         home, 
+        SSRThoughtListView,
+        SSRThoughtCreateView,
+        SSRThoughtDetailView,
+        SSRThoughtUpdateView,
+        SSRThoughtDeleteView,
+
+        SSRThoughtDateListView,
+        SSRThoughtDateCreateView,
+        SSRThoughtDateDetailView,
+        SSRThoughtDateUpdateView,
+        SSRThoughtDateDeleteView,
+
+
+
+
         ThoughtListView, 
         ThoughtCreateView, 
         ThoughtDetailView,
@@ -45,17 +60,17 @@ app_name = "core"
 urlpatterns = [
     path("home/", home, name = "home" ),
 
-    path("thoughts/", ThoughtListView.as_view(), name = "thought-list"),
-    path("thought/create/", ThoughtCreateView.as_view(), name = "thought-create"),
-    path("thought/<int:pk>/", ThoughtDetailView.as_view(), name = "thought-detail"),
-    path("thought/<int:pk>/update/", ThoughtUpdateView.as_view(), name="thought-update"),
-    path("thought/<int:pk>/delete/", ThoughtDeleteView.as_view(), name="thought-delete"),
+    path("ssr/thoughts/", SSRThoughtListView.as_view(), name = "ssr-thought-list"),
+    path("ssr/thought/create/", SSRThoughtCreateView.as_view(), name = "ssr-thought-create"),
+    path("ssr/thought/<int:pk>/", SSRThoughtDetailView.as_view(), name = "ssr-thought-detail"),
+    path("ssr/thought/<int:pk>/update/", SSRThoughtUpdateView.as_view(), name="ssr-thought-update"),
+    path("ssr/thought/<int:pk>/delete/", SSRThoughtDeleteView.as_view(), name="ssr-thought-delete"),
 
-    path("thought-dates/", ThoughtDateListView.as_view(), name = "thought-date-list"),
-    path("thought-date/create/", ThoughtDateCreateView.as_view(), name = "thought-date-create"),
-    path("thought-date/<int:pk>/", ThoughtDateDetailView.as_view(), name = "thought-date-detail"),
-    path("thought-date/<int:pk>/update/", ThoughtDateUpdateView.as_view(), name = "thought-date-update"),
-    path("thought-date/<int:pk>/delete/", ThoughtDateDeleteView.as_view(), name = "thought-date-delete"),
+    path("ssr/thought-dates/", SSRThoughtDateListView.as_view(), name = "ssr-thought-date-list"),
+    path("ssr/thought-date/create/", SSRThoughtDateCreateView.as_view(), name = "ssr-thought-date-create"),
+    path("ssr/thought-date/<int:pk>/", SSRThoughtDateDetailView.as_view(), name = "ssr-thought-date-detail"),
+    path("ssr/thought-date/<int:pk>/update/", SSRThoughtDateUpdateView.as_view(), name = "ssr-thought-date-update"),
+    path("ssr/thought-date/<int:pk>/delete/", SSRThoughtDateDeleteView.as_view(), name = "ssr-thought-date-delete"),
 
     path("most-relevant-thoughts/", most_relevant_thoughts_view, name = "most-relevant-thoughts"),
 
@@ -73,6 +88,8 @@ urlpatterns = [
     path("charts/", ChartsView.as_view(), name="charts"),
 
     # Api
+    path("thoughts/", ThoughtListView.as_view(), name = "thought-list"),
+
     path("facilitators/", FacilitatorListView.as_view(), name="facilitator-list"),
     path("facilitator/create/", FacilitatorCreateView.as_view(), name="facilitator-create"),
     path("facilitator/<uuid:id>/", FacilitatorRetrieveView.as_view(), name="facilitator-retrieve"),

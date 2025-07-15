@@ -14,7 +14,7 @@ def home(request):
     return render(request, "core/home.html")
 
 
-class ThoughtListView(ListView):
+class SSRThoughtListView(ListView):
     model = Thought
     template_name = "core/thought/list.html"
     
@@ -22,11 +22,11 @@ class ThoughtListView(ListView):
         return Thought.objects.filter(user=self.request.user)
 
 
-class ThoughtCreateView(CreateView):
+class SSRThoughtCreateView(CreateView):
     model = Thought
     form_class = ThoughtForm
     template_name = "core/thought/create.html"
-    success_url = reverse_lazy("core:thought-list")
+    success_url = reverse_lazy("core:ssr-thought-list")
 
     def form_valid(self, form):
         """Auto-assign current user to 'user' field of Thought form"""
@@ -34,38 +34,38 @@ class ThoughtCreateView(CreateView):
         return super().form_valid(form)
 
 
-class ThoughtDetailView(DetailView):
+class SSRThoughtDetailView(DetailView):
     model = Thought
     template_name = "core/thought/detail.html"
 
 
-class ThoughtUpdateView(UpdateView):
+class SSRThoughtUpdateView(UpdateView):
     model = Thought
     form_class = ThoughtForm
     template_name = "core/thought/update.html"
-    success_url = reverse_lazy("core:thought-list")
+    success_url = reverse_lazy("core:ssr-thought-list")
 
 
-class ThoughtDeleteView(DeleteView):
+class SSRThoughtDeleteView(DeleteView):
     model = Thought
     template_name = "core/thought/delete.html"
-    success_url = reverse_lazy("core:thought-list")
+    success_url = reverse_lazy("core:ssr-thought-list")
 
 
 
 # ThoughtDate Views
-class ThoughtDateListView(ListView):
+class SSRThoughtDateListView(ListView):
     model = ThoughtDate
     template_name = "core/thoughtdate/list.html"
 
     def get_queryset(self):
         return ThoughtDate.objects.filter(user=self.request.user)
 
-class ThoughtDateCreateView(CreateView):
+class SSRThoughtDateCreateView(CreateView):
     model = ThoughtDate
     form_class = ThoughtDateForm
     template_name = "core/thoughtdate/form.html"
-    success_url = reverse_lazy("core:thought-date-list")  
+    success_url = reverse_lazy("core:ssr-thought-date-list")  
 
     def form_valid(self, form):
         """Auto-assign current user to 'user' field of ThoughtDate form"""
@@ -73,22 +73,22 @@ class ThoughtDateCreateView(CreateView):
         return super().form_valid(form)
 
 
-class ThoughtDateDetailView(DetailView):
+class SSRThoughtDateDetailView(DetailView):
     model = ThoughtDate
     template_name = "core/thoughtdate/detail.html"
 
 
-class ThoughtDateUpdateView(UpdateView):
+class SSRThoughtDateUpdateView(UpdateView):
     model = ThoughtDate
     form_class = ThoughtDateForm
     template_name = "core/thoughtdate/update.html"
-    success_url = reverse_lazy("core:thought-date-list")
+    success_url = reverse_lazy("core:ssr-thought-date-list")
 
 
-class ThoughtDateDeleteView(DeleteView):
+class SSRThoughtDateDeleteView(DeleteView):
     model = ThoughtDate
     template_name = "core/thoughtdate/delete.html"
-    success_url = reverse_lazy("core:thought-date-list")
+    success_url = reverse_lazy("core:ssr-thought-date-list")
 
 
 
