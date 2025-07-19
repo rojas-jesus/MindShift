@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import (
-        home, 
+        ssr_home, 
         SSRThoughtListView,
         SSRThoughtCreateView,
         SSRThoughtDetailView,
@@ -19,6 +19,13 @@ from .views import (
         SSRActionUpdateView,
         SSRActionDeleteView,
 
+        # Charts
+        ssr_most_relevant_thoughts_view, 
+        ssr_action_emotion_chart_view,
+        SSRChartsView,
+        #action_emotion_chart_view,
+        #actiondate_sad_intensity_chart_view,
+        #actiondate_today_sad_intensity_chart_view,
 
         ThoughtListView, 
         ThoughtCreateView, 
@@ -30,18 +37,11 @@ from .views import (
         ThoughtDateDetailView,
         ThoughtDateUpdateView,
         ThoughtDateDeleteView,
-        most_relevant_thoughts_view, 
         ActionListView,
         ActionCreateView, 
         ActionDetailView,
         ActionUpdateView,
         ActionDeleteView,
-        #action_emotion_chart_view,
-        #actiondate_sad_intensity_chart_view,
-        #actiondate_today_sad_intensity_chart_view,
-        # Charts
-        actiondate_sad_intensity_last_30_days_view,
-        ChartsView,
 
         FacilitatorListView,
         FacilitatorCreateView,
@@ -62,7 +62,9 @@ from .views import (
 app_name = "core"
 
 urlpatterns = [
-    path("home/", home, name = "home" ),
+
+    # SSR
+    path("ssr/home/", ssr_home, name = "ssr-home" ),
 
     path("ssr/thoughts/", SSRThoughtListView.as_view(), name = "ssr-thought-list"),
     path("ssr/thought/create/", SSRThoughtCreateView.as_view(), name = "ssr-thought-create"),
@@ -76,20 +78,19 @@ urlpatterns = [
     path("ssr/thought-date/<int:pk>/update/", SSRThoughtDateUpdateView.as_view(), name = "ssr-thought-date-update"),
     path("ssr/thought-date/<int:pk>/delete/", SSRThoughtDateDeleteView.as_view(), name = "ssr-thought-date-delete"),
 
-    path("most-relevant-thoughts/", most_relevant_thoughts_view, name = "most-relevant-thoughts"),
-
     path("ssr/actions/", SSRActionListView.as_view(), name="ssr-action-list"),
     path("ssr/action/create/", SSRActionCreateView.as_view(), name="ssr-action-create"),
     path("ssr/action/<int:pk>/", SSRActionDetailView.as_view() , name="ssr-action-detail"),
     path("ssr/action/<pk>/update/", SSRActionUpdateView.as_view(), name="ssr-action-update"),
     path("ssr/action/<pk>/delete/", SSRActionDeleteView.as_view(), name="ssr-action-delete"),
 
+    path("ssr/most-relevant-thoughts/", ssr_most_relevant_thoughts_view, name = "ssr-most-relevant-thoughts"),
+    path("ssr/action-date/chart/sad-intensity-last-30-days/", ssr_action_emotion_chart_view, name="ssr-action-date-chart-sad-intensity-last-30-days"),
+    path("ssr/charts/", SSRChartsView.as_view(), name="ssr-charts"),
 
     #path("action-emotion-chart/", action_emotion_chart_view, name="action-emotion-chart"),
     #path("action-date-sad-intensity-chart/", actiondate_sad_intensity_chart_view, name="action-date-sad-intensity-chart"),
     #path("action-date-today-sad-intensity-chart/", actiondate_today_sad_intensity_chart_view, name="action-date-today-sad-intensity-chart"),
-    path("action-date/chart/sad-intensity-last-30-days/", actiondate_sad_intensity_last_30_days_view, name="action-date-chart-sad-intensity-last-30-days"),
-    path("charts/", ChartsView.as_view(), name="charts"),
 
     # Api
     path("thoughts/", ThoughtListView.as_view(), name = "thought-list"),

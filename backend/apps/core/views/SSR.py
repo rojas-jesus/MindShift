@@ -10,7 +10,7 @@ from datetime import date, timedelta, datetime
 from django.db.models import Count
 
 # Thought Views
-def home(request):
+def ssr_home(request):
     return render(request, "core/home.html")
 
 
@@ -94,7 +94,7 @@ class SSRThoughtDateDeleteView(DeleteView):
 
 
 
-def most_relevant_thoughts_view(request):
+def ssr_most_relevant_thoughts_view(request):
     """
     Most relevant thoughts based on the number of occurrences in the last 30 days.
     """
@@ -191,7 +191,7 @@ class SSRActionDeleteView(DeleteView):
 
 # Action Views Extra
 
-def action_emotion_chart_view(request):
+def ssr_action_emotion_chart_view(request):
     """
     Chart that displays the number of times a type of emotion has been experienced, based on all actions
     """
@@ -219,6 +219,6 @@ def action_emotion_chart_view(request):
 
 
 
-class ChartsView(TemplateView):
+class SSRChartsView(TemplateView):
     template_name = "core/charts.html"
 
