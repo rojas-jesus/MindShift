@@ -13,7 +13,11 @@ from .views import (
         SSRThoughtDateUpdateView,
         SSRThoughtDateDeleteView,
 
-
+        SSRActionListView,
+        SSRActionCreateView,
+        SSRActionDetailView,
+        SSRActionUpdateView,
+        SSRActionDeleteView,
 
 
         ThoughtListView, 
@@ -74,11 +78,11 @@ urlpatterns = [
 
     path("most-relevant-thoughts/", most_relevant_thoughts_view, name = "most-relevant-thoughts"),
 
-    path("actions/", ActionListView.as_view(), name="action-list"),
-    path("action/create/", ActionCreateView.as_view(), name="action-create"),
-    path("action/<int:pk>/", ActionDetailView.as_view() , name="action-detail"),
-    path("action/<pk>/update/", ActionUpdateView.as_view(), name="action-update"),
-    path("action/<pk>/delete/", ActionDeleteView.as_view(), name="action-delete"),
+    path("ssr/actions/", SSRActionListView.as_view(), name="ssr-action-list"),
+    path("ssr/action/create/", SSRActionCreateView.as_view(), name="ssr-action-create"),
+    path("ssr/action/<int:pk>/", SSRActionDetailView.as_view() , name="ssr-action-detail"),
+    path("ssr/action/<pk>/update/", SSRActionUpdateView.as_view(), name="ssr-action-update"),
+    path("ssr/action/<pk>/delete/", SSRActionDeleteView.as_view(), name="ssr-action-delete"),
 
 
     #path("action-emotion-chart/", action_emotion_chart_view, name="action-emotion-chart"),

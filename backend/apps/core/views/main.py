@@ -122,7 +122,7 @@ def most_relevant_thoughts_view(request):
 
 # Action Views
 
-class ActionListView(ListView):
+class SSRActionListView(ListView):
     model = Action
     template_name = "core/action/list.html"
 
@@ -130,11 +130,11 @@ class ActionListView(ListView):
         return Action.objects.filter(user=self.request.user)
 
 
-class ActionCreateView(CreateView):
+class SSRActionCreateView(CreateView):
     model = Action
     form_class = ActionForm
     template_name = "core/action/create.html"
-    success_url = reverse_lazy("core:action-list")
+    success_url = reverse_lazy("core:ssr-action-list")
 
     def form_valid(self, form):
         """Auto-assign current user to 'user' field of Action form"""
@@ -142,7 +142,7 @@ class ActionCreateView(CreateView):
         return super().form_valid(form)
 
 
-class ActionDetailView(DetailView):
+class SSRActionDetailView(DetailView):
     model = Action
     template_name = "core/action/detail.html"
 
@@ -157,11 +157,11 @@ class ActionDetailView(DetailView):
         return super().dispatch(request, *args, **kwargs)
 
 
-class ActionUpdateView(UpdateView):
+class SSRActionUpdateView(UpdateView):
     model = Action
     form_class = ActionForm
     template_name = "core/action/update.html"
-    success_url = reverse_lazy("core:action-list")
+    success_url = reverse_lazy("core:ssr-action-list")
 
     def dispatch(self, request, *args, **kwargs):
         """
@@ -174,10 +174,10 @@ class ActionUpdateView(UpdateView):
         return super().dispatch(request, *args, **kwargs)
 
 
-class ActionDeleteView(DeleteView):
+class SSRActionDeleteView(DeleteView):
     model = Action
     template_name = "core/action/delete.html"
-    success_url = reverse_lazy("core:action-list")
+    success_url = reverse_lazy("core:ssr-action-list")
 
     def dispatch(self, request, *args, **kwargs):
         """
