@@ -6,6 +6,8 @@ MindShift its a toolkit that help you to get more control about your thoughts an
 
 • Track Thoughts: Allows you to track your thoughts over the time.
 
+• AI Thought Analysis: Integrates with external AI service to analyze your thoughts patterns and provide insights.
+
 • Thoughts Charting: Observe the relationships and characteristics of your thoughts graphically.
 
 • Search And Filter Thoughts: Allows you to smart search and filter your thoughts easily, intuitively and accurately.
@@ -34,11 +36,15 @@ pip install -r requirements.txt
 Create the .env file:
 - Navigate to the root directory of the Django project (where the manage.py file is located).
 - Create a new file named .env (touch .env).
-- Open the .env file you just created and add the following lines, replacing the example values with your own secret keys and configurations:
+- Open the .env file you just created and add the following lines, replacing the example values with your own secret keys and configurations, including the AI service credentials:
 
 ```env
 SECRET_KEY=your-secret-key
 DEBUG=True
+
+# External AI service credentials 
+AIMLAPI_KEY=your-aimlapi-key-here
+AIMLAPI_URL=https://api.aimlapi.com/v1
 ```
 Apply the migrations:
 ```bash
