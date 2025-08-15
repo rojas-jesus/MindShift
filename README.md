@@ -42,7 +42,8 @@ Create the .env file:
 SECRET_KEY=your-secret-key
 DEBUG=True
 
-# External AI service credentials 
+# External AI service credentials
+# Get API key at: https://aimlapi.com
 AIMLAPI_KEY=your-aimlapi-key-here
 AIMLAPI_URL=https://api.aimlapi.com/v1
 ```
@@ -58,6 +59,16 @@ Run the development server:
 ```bash
 python manage.py runserver
 ```
+
+# AI-Powered Integrations
+
+This project integrates with third-party APIs for advanced functionality. 
+All credentials are configured via environment variables.
+
+### AI analysis
+The AI analysis feature uses an external service via OpenAI-compatible API. 
+By default configured for [AIMLAPI](https://aimlapi.com).
+
 
 # Main Technologies Used
 
