@@ -16,7 +16,9 @@ from ..filters import IsOwnerFilterBackend
 class FacilitatorListView(ListAPIView):
     queryset = Facilitator.objects.all()
     serializer_class = FacilitatorSerializer
+    permission_classes = [IsAuthenticated]
     filter_backends = (IsOwnerFilterBackend,)
+
 
 class FacilitatorCreateView(CreateAPIView):
     queryset = Facilitator.objects.all()
@@ -45,6 +47,6 @@ class FacilitatorDeleteView(DestroyAPIView):
     queryset = Facilitator.objects.all()
     serializer_class = FacilitatorSerializer
     permission_classes = [IsAuthenticated]
-    filter_backends = (IsOwnerFilterBackend)
+    filter_backends = (IsOwnerFilterBackend,)
     lookup_field = "id"
 

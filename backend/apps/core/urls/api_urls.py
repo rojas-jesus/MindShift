@@ -1,11 +1,10 @@
 from django.urls import path
 from ..views import (
-
-        # ThoughtListView, 
-        # ThoughtCreateView, 
-        # ThoughtDetailView,
-        # ThoughtUpdateView,
-        # ThoughtDeleteView,
+        ThoughtListView, 
+        ThoughtCreateView, 
+        ThoughtRetrieveView,
+        ThoughtUpdateView,
+        ThoughtDeleteView,
         # ThoughtDateListView,
         # ThoughtDateCreateView,
         # ThoughtDateDetailView,
@@ -33,9 +32,11 @@ from ..views import (
         )
 
 urlpatterns = [
-
-    # Api
-    # path("thoughts/", ThoughtListView.as_view(), name = "thought-list"),
+    path("thoughts/", ThoughtListView.as_view(), name = "thought-list"),
+    path("thought/create/", ThoughtCreateView.as_view(), name="thought-create"),
+    path("thought/<id>/", ThoughtRetrieveView.as_view(), name="thought-retrieve"),
+    path("thought/<id>/update/", ThoughtUpdateView.as_view(), name="thought-update"),
+    path("thought/<id>/delete/", ThoughtDeleteView.as_view(), name="thought-delete"),
 
     path("facilitators/", FacilitatorListView.as_view(), name="facilitator-list"),
     path("facilitator/create/", FacilitatorCreateView.as_view(), name="facilitator-create"),
