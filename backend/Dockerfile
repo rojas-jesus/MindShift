@@ -1,17 +1,31 @@
-FROM python:3.12.3-alpine3.19
+FROM python:3.12-slim-bookworm
 
-ENV PYTHONUNBUFFERED=1
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-RUN  apk update \
-#	&& apk add --no-cache gcc musl-dev postgresql-dev python3-dev libffi-dev \
-	&& pip install --upgrade pip
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    libpq-dev \
+    python3-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-COPY ./requirements.txt ./
+# Install Python dependencies
+RUN pip install --upgrade pip
+COPY ./requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-COPY ./ ./ 
+# Copy project files
+COPY . .
 
-RUN pip install -r requirements.txt
+# Create and switch to a non-root user
+RUN adduser --disabled-password --gecos "" django-user
+USER django-user
+
+# Port used by Django
+EXPOSE 8000
 
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

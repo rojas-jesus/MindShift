@@ -1,0 +1,16 @@
+.git
+.gitignore
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.db.sqlite3
+.pytest_cache
+.vscode
+.env
+backend/venv
+frontend/vue-client/node_modules
+frontend/vue-client/dist
+docker-compose.yml
+Dockerfile
+.dockerignore
