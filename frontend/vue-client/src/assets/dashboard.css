@@ -1,0 +1,385 @@
+/* Dashboard Custom Theme */
+:root {
+  --primary-purple: #6A0DAD;
+  --light-purple: #8A2BE2;
+  --accent-orange: #FF8C42;
+  --accent-yellow: #FFD700;
+  --accent-blue: #87CEEB;
+  --bg-light: #F8F9FA;
+  --text-dark: #2C3E50;
+}
+
+body {
+  background-color: var(--bg-light);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Dashboard Layout Structure */
+.dashboard-container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-navigation {
+  background: linear-gradient(135deg, var(--primary-purple), var(--light-purple));
+  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+  z-index: 1000;
+  flex-shrink: 0;
+}
+
+.main-content-full {
+  flex: 1;
+  overflow-y: auto;
+  background-color: var(--bg-light);
+  width: 100%;
+}
+
+/* Top Navigation Styles */
+.top-navigation .nav-link {
+  color: rgba(255,255,255,0.8);
+  border-radius: 15px;
+  padding: 8px 16px;
+  margin: 0 4px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.top-navigation .nav-link:hover,
+.top-navigation .nav-link.active,
+.top-navigation .router-link-active {
+  background-color: rgba(255,255,255,0.2);
+  color: white;
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.top-navigation .nav-link.active,
+.top-navigation .router-link-exact-active {
+  background-color: rgba(255,255,255,0.3);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Search bar in top nav */
+.top-navigation .search-bar {
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.1);
+  color: white;
+  padding: 8px 15px;
+  transition: all 0.3s ease;
+}
+
+.top-navigation .search-bar::placeholder {
+  color: rgba(255,255,255,0.7);
+}
+
+.top-navigation .search-bar:focus {
+  background: rgba(255,255,255,0.2);
+  border-color: rgba(255,255,255,0.5);
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.1);
+  color: white;
+}
+
+.top-navigation .input-group-text {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-right: none;
+  color: rgba(255,255,255,0.8);
+}
+
+.top-navigation .form-control {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-left: none;
+  color: white;
+}
+
+.top-navigation .form-control:focus {
+  background: rgba(255,255,255,0.2);
+  border-color: rgba(255,255,255,0.5);
+  color: white;
+  box-shadow: none;
+}
+
+/* User buttons in top nav */
+.top-navigation .btn-white {
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.top-navigation .btn-white:hover {
+  background: rgba(255,255,255,0.3);
+  border-color: rgba(255,255,255,0.5);
+  transform: translateY(-2px);
+}
+
+/* Sidebar Styles - No longer used, keeping for reference */
+/*
+.sidebar .nav-item {
+  margin: 10px 0;
+}
+
+.sidebar .nav-link {
+  color: rgba(255,255,255,0.8);
+  border-radius: 15px;
+  padding: 15px 20px;
+  margin: 5px 10px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+  background-color: rgba(255,255,255,0.2);
+  color: white;
+  transform: translateX(5px);
+}
+
+.sidebar .nav-link.active {
+  background-color: rgba(255,255,255,0.3);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+*/
+
+/* Card Styles */
+.dashboard-card {
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.welcome-card {
+  background: linear-gradient(135deg, #8B5CF6, #EC4899);
+  color: white;
+}
+
+.device-card {
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+.device-card:hover {
+  transform: scale(1.02);
+}
+
+.device-card.active {
+  background-color: var(--light-purple);
+  color: white;
+}
+
+/* Toggle Switch */
+.form-switch .form-check-input {
+  width: 50px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.form-switch .form-check-input:checked {
+  background-color: var(--accent-green);
+  border-color: var(--accent-green);
+}
+
+/* Emotional Temperature Gauge */
+.emotion-gauge {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 180deg,
+    #3B82F6 0deg,    /* Blue for sad */
+    #3B82F6 90deg,
+    #F59E0B 90deg,    /* Orange for anxious */
+    #F59E0B 180deg,
+    #EAB308 180deg,   /* Yellow for balanced */
+    #EAB308 270deg,
+    #10B981 270deg,   /* Green for happy */
+    #10B981 360deg
+  );
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: all 0.5s ease;
+}
+
+.emotion-gauge::before {
+  content: '';
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  background: white;
+  border-radius: 50%;
+}
+
+.emotion-value {
+  position: relative;
+  z-index: 1;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--text-dark);
+}
+
+.emotion-emoji {
+  font-size: 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.emotion-label {
+  position: relative;
+  z-index: 1;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+/* Mood Colors */
+.mood-sad { color: #3B82F6; }
+.mood-anxious { color: #F59E0B; }
+.mood-balanced { color: #EAB308; }
+.mood-happy { color: #10B981; }
+
+/* Device Colors Updated for Mind Theme */
+.device-yellow { background-color: #EAB308; }
+.device-pink { background-color: #EC4899; }
+.device-blue { background-color: #3B82F6; }
+.device-purple { background-color: #8B5CF6; }
+.device-light-blue { background-color: #60A5FA; }
+.device-indigo { background-color: #6366F1; }
+
+/* Mind Tool Cards */
+.mind-tool-card {
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+}
+
+.mind-tool-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.2);
+}
+
+.mind-tool-card.active {
+  background: linear-gradient(135deg, var(--primary-purple), var(--light-purple));
+  color: white;
+}
+
+/* Mood Chart Styles */
+.mood-chart-container {
+  position: relative;
+  height: 300px;
+  width: 100%;
+}
+
+/* Welcome Card Updated */
+.welcome-card {
+  background: linear-gradient(135deg, #8B5CF6, #EC4899);
+  color: white;
+}
+
+/* Member Roles Updated */
+.member-avatar.purple { background: #8B5CF6; }
+.member-avatar.pink { background: #EC4899; }
+.member-avatar.blue { background: #3B82F6; }
+.member-avatar.green { background: #10B981; }
+.member-avatar.orange { background: #F59E0B; }
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Search Bar */
+.search-bar {
+  border-radius: 25px;
+  border: 1px solid #e9ecef;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+}
+
+.search-bar:focus {
+  box-shadow: 0 0 0 3px rgba(106, 13, 173, 0.1);
+  border-color: var(--primary-purple);
+}
+
+/* Member Avatars */
+.member-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+  font-size: 1.2rem;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .top-navigation {
+    padding: 10px 0;
+  }
+  
+  .top-navigation .row {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .top-navigation .col-md-3,
+  .top-navigation .col-md-6 {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .top-navigation .nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .top-navigation .nav-link {
+    margin: 2px;
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+  
+  .top-navigation .d-inline-flex {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .device-card {
+    margin-bottom: 10px;
+  }
+  
+  .emotion-gauge {
+    width: 150px;
+    height: 150px;
+  }
+}
