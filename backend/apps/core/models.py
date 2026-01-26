@@ -121,3 +121,16 @@ class Environment(models.Model):
 
     def __str__(self):
         return self.name
+
+class VoiceThoughtEntry(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    transcription = models.TextField(verbose_name="Transcribed Text")
+    timestamp = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name = "Voice Thought Entry"
+        verbose_name_plural = "Voice Thought Entries"
+        ordering = ['-timestamp']
+    
+    def __str__(self):
+        return f"{self.user.username} - {self.timestamp.strftime('%Y-%m-%d %H:%M')}"

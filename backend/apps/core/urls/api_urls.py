@@ -28,7 +28,8 @@ from ..views import (
         EnvironmentDeleteView,
 
         UserThoughtsTextView,
-        AIThoughtsAnalysisView, 
+        AIThoughtsAnalysisView,
+        VoiceThoughtEntryCreateView,
         )
 
 urlpatterns = [
@@ -51,5 +52,7 @@ urlpatterns = [
     path("environment/<uuid:id>/delete/", EnvironmentDeleteView.as_view(), name="environment-delete"),
 
     path("ai/user-thoughts-text/", UserThoughtsTextView.as_view(), name="ai-user-thoughts-text"), # refactor later
-    path("ai/thoughts-analysis/", AIThoughtsAnalysisView.as_view(), name="ai-thoughts-analysis")
+    path("ai/thoughts-analysis/", AIThoughtsAnalysisView.as_view(), name="ai-thoughts-analysis"),
+    
+    path("voice/thought/create/", VoiceThoughtEntryCreateView.as_view(), name="voice-thought-create"),
 ]

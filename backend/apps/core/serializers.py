@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Facilitator, Environment, Thought
+from .models import Facilitator, Environment, Thought, VoiceThoughtEntry
 
 class ThoughtSerializer(serializers.ModelSerializer):
     
@@ -20,4 +20,10 @@ class EnvironmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Environment
         fields = ("id","name","description")
+
+class VoiceThoughtEntrySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VoiceThoughtEntry
+        fields = ("id", "transcription", "timestamp")
+        read_only_fields = ("id", "timestamp")
 
