@@ -23,9 +23,15 @@ COPY . .
 
 # Create and switch to a non-root user
 RUN adduser --disabled-password --gecos "" django-user
+
+# Make entrypoint script executable and change ownership
+RUN chmod +x entrypoint.sh && \
+    chown django-user:django-user entrypoint.sh
+
 USER django-user
 
-# Port used by Django
+# Port used by Django (Render.com will map this)
 EXPOSE 8000
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Use entrypoint script for flexible port configuration
+CMD ["./entrypoint.sh"]
