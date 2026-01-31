@@ -1,0 +1,44 @@
+name: Build and Push Docker Images
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GHCR_TOKEN_MINDSHIFT }}
+
+      - name: Build and push backend image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./backend
+          file: ./backend/Dockerfile
+          push: true
+          tags: |
+            ghcr.io/rojas-jesus/mindshift-backend:latest
+            ghcr.io/rojas-jesus/mindshift-backend:${{ github.sha }}
+
+      - name: Build and push frontend image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./frontend/vue-client
+          file: ./frontend/vue-client/Dockerfile
+          push: true
+          tags: |
+            ghcr.io/rojas-jesus/mindshift-frontend:latest
+            ghcr.io/rojas-jesus/mindshift-frontend:${{ github.sha }}
+
