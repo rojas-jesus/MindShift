@@ -6,8 +6,9 @@
           <div class="card shadow">
             <div class="card-header bg-primary text-white">
               <h4 class="mb-0">
-                <i class="fas fa-brain me-2"></i>
+                <HugeiconsIcon :icon="BrainIcon" class="me-2" />
                 Create New Thought
+
               </h4>
             </div>
             <div class="card-body">
@@ -20,8 +21,9 @@
                     @click="activeTab = 'voice'"
                     type="button"
                   >
-                    <i class="fas fa-microphone me-2"></i>
+                    <HugeiconsIcon :icon="Mic01Icon" class="me-2" />
                     Voice Input
+
                   </button>
                 </li>
                 <li class="nav-item" role="presentation">
@@ -31,8 +33,9 @@
                     @click="activeTab = 'manual'"
                     type="button"
                   >
-                    <i class="fas fa-edit me-2"></i>
+                    <HugeiconsIcon :icon="PencilEdit01Icon" class="me-2" />
                     Manual Form
+
                   </button>
                 </li>
               </ul>
@@ -46,9 +49,10 @@
 
                 <!-- Manual Form Tab -->
                 <div v-if="activeTab === 'manual'" class="tab-pane fade show active">
-                  <div class="alert alert-info">
-                    <i class="fas fa-info-circle me-2"></i>
+                  <div class="alert alert-info d-flex align-items-center">
+                    <HugeiconsIcon :icon="InformationCircleIcon" class="me-2" />
                     Use the manual form to create structured thought entries with all fields.
+
                     For a quick voice entry, switch to the Voice Input tab.
                   </div>
                   <p class="text-muted">
@@ -69,8 +73,16 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import VoiceThoughtInput from '../components/VoiceThoughtInput.vue';
+import { HugeiconsIcon } from '@hugeicons/vue';
+import {
+  BrainIcon,
+  Mic01Icon,
+  PencilEdit01Icon,
+  InformationCircleIcon
+} from '@hugeicons/core-free-icons';
 
 const activeTab = ref<'voice' | 'manual'>('voice');
+
 </script>
 
 <style scoped>

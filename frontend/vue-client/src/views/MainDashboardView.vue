@@ -27,7 +27,8 @@
               <span class="me-3 text-white">Scarlett</span>
               <div class="dropdown">
                 <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                  <i class="fas fa-user-circle fa-lg"></i>
+                  <HugeiconsIcon :icon="UserCircleIcon" size="24" />
+
                 </button>
               </div>
             </div>
@@ -46,9 +47,10 @@
               <h2>Hello, Scarlett!</h2>
               <p>Welcome to your mind wellness dashboard</p>
               <div class="mood-indicator">
-                <i class="fas fa-brain me-2"></i>
+                <HugeiconsIcon :icon="BrainIcon" class="me-2" />
                 <span>Current Mood: Balanced</span>
                 <span class="fs-4">😊</span>
+
               </div>
             </div>
           </div>
@@ -60,15 +62,17 @@
             <div class="d-flex justify-content-between align-items-center mb-3">
               <h4 class="mb-0">Daily Thoughts</h4>
               <RouterLink to="/thought/create" class="btn btn-primary">
-                <i class="fas fa-plus me-2"></i>
+                <HugeiconsIcon :icon="Plus01Icon" class="me-2" />
                 Add Thought
+
               </RouterLink>
             </div>
             <div class="row">
               <div class="col-md-3 mb-3" v-for="thought in thoughts" :key="thought.id">
                 <div class="thought-card" :class="{ active: thought.status }">
                   <div class="card-body text-center">
-                    <i :class="`fas ${thought.icon} fa-2x mb-3`"></i>
+                    <HugeiconsIcon :icon="getIcon(thought.icon)" size="32" class="mb-3 mx-auto" />
+
                     <h6 class="card-title">{{ thought.name }}</h6>
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" :checked="thought.status" @change="toggleThought(thought.id)">
@@ -100,8 +104,9 @@
               <div class="tool-item mb-3" v-for="tool in mindTools" :key="tool.id">
                 <div class="d-flex justify-content-between align-items-center p-2 rounded tool-bg">
                   <div class="d-flex align-items-center">
-                    <i :class="`fas ${tool.icon} me-2`"></i>
+                    <HugeiconsIcon :icon="getIcon(tool.icon)" class="me-2" />
                     <span>{{ tool.name }}</span>
+
                   </div>
                   <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" :checked="tool.status" @change="toggleMindTool(tool.id)">
@@ -141,11 +146,13 @@
               <div class="emotion-label mb-3">{{ currentMood.level }}</div>
               <div class="d-flex justify-content-center align-items-center mb-3">
                 <button class="btn btn-outline-secondary btn-sm me-2" @click="decreaseEmotion">
-                  <i class="fas fa-minus"></i>
+                  <HugeiconsIcon :icon="Remove01Icon" size="16" />
                 </button>
                 <button class="btn btn-outline-secondary btn-sm" @click="increaseEmotion">
-                  <i class="fas fa-plus"></i>
+                  <HugeiconsIcon :icon="Add01Icon" size="16" />
                 </button>
+
+
               </div>
             </div>
           </div>
@@ -159,17 +166,56 @@
 import { ref, onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useDashboardStore } from '../stores/dashboard'
+import { 
+  HugeiconsIcon 
+} from '@hugeicons/vue'
+import { 
+  UserCircleIcon, 
+  BrainIcon, 
+  Add01Icon, 
+  Remove01Icon,
+  Sun01Icon,
+  FavouriteIcon,
+  SmileIcon,
+  NaturalFoodIcon,
+  FastWindIcon,
+  StarIcon,
+  ZzzIcon
+} from '@hugeicons/core-free-icons'
+
+
+
 
 const dashboardStore = useDashboardStore()
 const { thoughts, mindTools, members, currentMood } = dashboardStore
 const { toggleThought, toggleMindTool, setEmotionalTemperature } = dashboardStore
 
+const iconMap: Record<string, any> = {
+  Sun01Icon,
+  FavouriteIcon,
+  SmileIcon,
+  NaturalFoodIcon,
+  FastWindIcon,
+  StarIcon,
+  BrainIcon,
+  ZzzIcon
+}
+
+
+const getIcon = (name: string) => {
+  return iconMap[name] || BrainIcon
+}
+
 const increaseEmotion = () => {
-  // Implementation for increasing emotion
+  if (dashboardStore.emotionalTemperature < 50) {
+    setEmotionalTemperature(dashboardStore.emotionalTemperature + 5)
+  }
 }
 
 const decreaseEmotion = () => {
-  // Implementation for decreasing emotion
+  if (dashboardStore.emotionalTemperature > 0) {
+    setEmotionalTemperature(dashboardStore.emotionalTemperature - 5)
+  }
 }
 
 const getAvatarColor = (id: number) => {

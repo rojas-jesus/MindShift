@@ -4,18 +4,19 @@ import { ref } from 'vue'
 export const useDashboardStore = defineStore('dashboard', () => {
   // State
   const thoughts = ref([
-    { id: 1, name: 'Morning Reflection', icon: 'fa-sun', status: true, color: 'yellow' },
-    { id: 2, name: 'Gratitude Journal', icon: 'fa-heart', status: true, color: 'pink' },
-    { id: 3, name: 'Mood Tracker', icon: 'fa-smile', status: false, color: 'blue' },
-    { id: 4, name: 'Meditation', icon: 'fa-spa', status: true, color: 'purple' }
+    { id: 1, name: 'Morning Reflection', icon: 'Sun01Icon', status: true, color: 'yellow' },
+    { id: 2, name: 'Gratitude Journal', icon: 'FavouriteIcon', status: true, color: 'pink' },
+    { id: 3, name: 'Mood Tracker', icon: 'SmileIcon', status: false, color: 'blue' },
+    { id: 4, name: 'Meditation', icon: 'NaturalFoodIcon', status: true, color: 'purple' }
   ])
 
   const mindTools = ref([
-    { id: 5, name: 'Breathing Exercise', icon: 'fa-wind', status: true, color: 'light-blue' },
-    { id: 6, name: 'Affirmations', icon: 'fa-star', status: true, color: 'yellow' },
-    { id: 7, name: 'Mindfulness', icon: 'fa-brain', status: false, color: 'purple' },
-    { id: 8, name: 'Sleep Tracker', icon: 'fa-moon', status: true, color: 'indigo' }
+    { id: 5, name: 'Breathing Exercise', icon: 'FastWindIcon', status: true, color: 'light-blue' },
+    { id: 6, name: 'Affirmations', icon: 'StarIcon', status: true, color: 'yellow' },
+    { id: 7, name: 'Mindfulness', icon: 'BrainIcon', status: false, color: 'purple' },
+    { id: 8, name: 'Sleep Tracker', icon: 'ZzzIcon', status: true, color: 'indigo' }
   ])
+
 
   const members = ref([
     { id: 1, name: 'Scarlett', role: 'Self Care', avatar: 'S' },

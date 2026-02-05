@@ -15,26 +15,33 @@
           <div class="col-md-6">
             <nav class="nav justify-content-center">
               <RouterLink class="nav-link active" to="/smart-home">
-                <i class="fas fa-brain me-2"></i>Mind
+                <HugeiconsIcon :icon="BrainIcon" class="me-2" />Mind
               </RouterLink>
+
               <RouterLink class="nav-link" to="/smart-home">
-                <i class="fas fa-heart me-2"></i>Emotions
+                <HugeiconsIcon :icon="FavouriteIcon" class="me-2" />Emotions
               </RouterLink>
+
               <RouterLink class="nav-link" to="/smart-home">
-                <i class="fas fa-spa me-2"></i>Mindfulness
+                <HugeiconsIcon :icon="NaturalFoodIcon" class="me-2" />Mindfulness
               </RouterLink>
+
               <RouterLink class="nav-link" to="/smart-home">
-                <i class="fas fa-book me-2"></i>Journal
+                <HugeiconsIcon :icon="Book01Icon" class="me-2" />Journal
               </RouterLink>
+
               <RouterLink class="nav-link" to="/smart-home">
-                <i class="fas fa-users me-2"></i>Support
+                <HugeiconsIcon :icon="UserGroupIcon" class="me-2" />Support
               </RouterLink>
+
               <RouterLink class="nav-link" to="/smart-home">
-                <i class="fas fa-chart-line me-2"></i>Progress
+                <HugeiconsIcon :icon="ChartLineData01Icon" class="me-2" />Progress
               </RouterLink>
+
               <RouterLink class="nav-link" to="/">
-                <i class="fas fa-sign-out-alt me-2"></i>Logout
+                <HugeiconsIcon :icon="Logout01Icon" class="me-2" />Logout
               </RouterLink>
+
             </nav>
           </div>
           
@@ -43,22 +50,26 @@
             <div class="d-inline-flex align-items-center">
               <div class="input-group me-3" style="max-width: 200px;">
                 <span class="input-group-text bg-white border-end-0">
-                  <i class="fas fa-search text-muted"></i>
+                  <HugeiconsIcon :icon="Search01Icon" class="text-muted" size="18" />
                 </span>
+
                 <input type="text" class="form-control search-bar border-start-0" placeholder="Search...">
               </div>
               <span class="me-3 text-white">Scarlett</span>
               <div class="dropdown">
                 <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                  <i class="fas fa-user-circle fa-lg"></i>
+                  <HugeiconsIcon :icon="UserCircleIcon" size="24" />
                 </button>
+
               </div>
               <button class="btn btn-white ms-2">
-                <i class="fas fa-bell fa-lg"></i>
+                <HugeiconsIcon :icon="Notification01Icon" size="24" />
               </button>
+
               <button class="btn btn-white ms-2">
-                <i class="fas fa-cog fa-lg"></i>
+                <HugeiconsIcon :icon="Settings01Icon" size="24" />
               </button>
+
             </div>
           </div>
         </div>
@@ -77,16 +88,18 @@
                   <h2 class="mb-3">Hello, Scarlett!</h2>
                   <p class="mb-2">Welcome to your mind wellness dashboard</p>
                   <div class="d-flex align-items-center">
-                    <i class="fas fa-brain me-2"></i>
+                    <HugeiconsIcon :icon="BrainIcon" class="me-2" />
                     <span class="me-3">Current Mood: {{ currentMood.level }}</span>
                     <span class="fs-4">{{ currentMood.emoji }}</span>
                   </div>
+
                 </div>
                 <div class="col-md-4 text-end">
                   <div class="text-center p-4 bg-white bg-opacity-25 rounded-3">
-                    <i class="fas fa-brain fa-3x text-white mb-2"></i>
+                    <HugeiconsIcon :icon="BrainIcon" size="48" class="text-white mb-2 mx-auto" />
                     <p class="mb-0 text-white">Mind Wellness</p>
                   </div>
+
                 </div>
               </div>
             </div>
@@ -101,7 +114,8 @@
               <div class="col-md-3 mb-3" v-for="thought in thoughts" :key="thought.id">
                 <div class="card dashboard-card device-card" :class="{ active: thought.status }">
                   <div class="card-body text-center">
-                    <i :class="`fas ${thought.icon} fa-2x mb-3`"></i>
+                    <HugeiconsIcon :icon="getIcon(thought.icon)" size="32" class="mb-3 mx-auto" />
+
                     <h6 class="card-title">{{ thought.name }}</h6>
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" :checked="thought.status" @change="toggleThought(thought.id)">
@@ -128,9 +142,10 @@
                 <div class="mind-tool-item mb-3" v-for="tool in mindTools" :key="tool.id">
                   <div class="d-flex justify-content-between align-items-center p-2 rounded" :class="`device-${tool.color}`">
                     <div class="d-flex align-items-center">
-                      <i :class="`fas ${tool.icon} me-2`"></i>
+                      <HugeiconsIcon :icon="getIcon(tool.icon)" class="me-2" />
                       <span>{{ tool.name }}</span>
                     </div>
+
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" :checked="tool.status" @change="toggleMindTool(tool.id)">
                     </div>
@@ -173,12 +188,13 @@
                 <div class="emotion-label mb-3">{{ currentMood.level }}</div>
                 <div class="d-flex justify-content-center align-items-center mb-3">
                   <button class="btn btn-outline-secondary btn-sm me-2" @click="decreaseEmotion">
-                    <i class="fas fa-minus"></i>
+                    <HugeiconsIcon :icon="Remove01Icon" size="16" />
                   </button>
                   <button class="btn btn-outline-secondary btn-sm" @click="increaseEmotion">
-                    <i class="fas fa-plus"></i>
+                    <HugeiconsIcon :icon="Add01Icon" size="16" />
                   </button>
                 </div>
+
                 <div class="form-check form-switch">
                   <input class="form-check-input" type="checkbox" checked>
                   <label class="form-check-label">Track Daily Mood</label>
@@ -215,12 +231,54 @@ import { RouterLink } from 'vue-router'
 import { useDashboardStore } from '../stores/dashboard'
 import Chart from 'chart.js/auto'
 import InspirationalQuote from '../components/InspirationalQuote.vue'
+import { 
+  HugeiconsIcon 
+} from '@hugeicons/vue'
+import { 
+  UserCircleIcon, 
+  BrainIcon, 
+  Add01Icon, 
+  Remove01Icon,
+  Sun01Icon,
+  FavouriteIcon,
+  SmileIcon,
+  NaturalFoodIcon,
+  FastWindIcon,
+  StarIcon,
+  ZzzIcon,
+
+
+  Book01Icon,
+  UserGroupIcon,
+  ChartLineData01Icon,
+  Logout01Icon,
+  Search01Icon,
+  Notification01Icon,
+  Settings01Icon
+} from '@hugeicons/core-free-icons'
 
 const dashboardStore = useDashboardStore()
 const moodChartCanvas = ref<HTMLCanvasElement>()
 
 const { thoughts, mindTools, members, emotionalTemperature, currentMood, moodHistory } = dashboardStore
 const { toggleThought, toggleMindTool, setEmotionalTemperature } = dashboardStore
+
+const iconMap: Record<string, any> = {
+  Sun01Icon,
+  FavouriteIcon,
+  SmileIcon,
+  NaturalFoodIcon,
+  FastWindIcon,
+  StarIcon,
+  BrainIcon,
+  ZzzIcon
+}
+
+
+const getIcon = (name: string) => {
+  return iconMap[name] || BrainIcon
+}
+
 
 const increaseEmotion = () => {
   if (emotionalTemperature.value < 50) {

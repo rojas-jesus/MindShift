@@ -2,12 +2,14 @@
   <div class="card dashboard-card quote-card">
     <div class="card-body">
       <div class="d-flex justify-content-between align-items-start mb-3">
-        <h5 class="card-title mb-0">
-          <i class="fas fa-quote-left me-2"></i>Daily Inspiration
+        <h5 class="card-title mb-0 d-flex align-items-center">
+          <HugeiconsIcon :icon="QuoteUpIcon" class="me-2" />Daily Inspiration
         </h5>
-        <button class="btn btn-sm btn-outline-secondary" @click="refreshQuote" :disabled="loading">
-          <i class="fas fa-sync-alt" :class="{ 'fa-spin': loading }"></i>
+
+        <button class="btn btn-sm btn-outline-secondary d-flex align-items-center" @click="refreshQuote" :disabled="loading">
+          <HugeiconsIcon :icon="RefreshIcon" :class="{ 'spin-animation': loading }" size="16" />
         </button>
+
       </div>
       
       <div v-if="loading" class="text-center py-3">
@@ -25,20 +27,23 @@
         </blockquote>
         
         <div class="d-flex justify-content-between align-items-center">
-          <small class="text-muted">
-            <i class="fas fa-heart me-1"></i>
+          <small class="text-muted d-flex align-items-center">
+            <HugeiconsIcon :icon="FavouriteIcon" size="14" class="me-1" />
             {{ category }}
           </small>
-          <button class="btn btn-sm btn-link text-primary p-0" @click="shareQuote">
-            <i class="fas fa-share-alt"></i>
+
+          <button class="btn btn-sm btn-link text-primary p-0 d-flex align-items-center" @click="shareQuote">
+            <HugeiconsIcon :icon="Share01Icon" size="18" />
           </button>
+
         </div>
       </div>
       
       <div v-else class="text-center py-3 text-muted">
-        <i class="fas fa-quote-left fa-2x mb-2"></i>
+        <HugeiconsIcon :icon="QuoteUpIcon" size="32" class="mb-2 mx-auto" />
         <p>Unable to load quote</p>
       </div>
+
     </div>
   </div>
 </template>
@@ -46,6 +51,14 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { quotesService, type Quote } from '../services/quotes'
+import { HugeiconsIcon } from '@hugeicons/vue'
+import {
+  QuoteUpIcon,
+  RefreshIcon,
+  FavouriteIcon,
+  Share01Icon
+} from '@hugeicons/core-free-icons'
+
 
 const quote = ref<Quote | null>(null)
 const loading = ref(false)
@@ -120,7 +133,7 @@ onMounted(() => {
   border-color: var(--primary-purple);
 }
 
-.fa-spin {
+.spin-animation {
   animation: spin 1s linear infinite;
 }
 
@@ -128,4 +141,5 @@ onMounted(() => {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
 </style>

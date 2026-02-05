@@ -2,51 +2,57 @@
   <div class="voice-thought-input">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title mb-3">
-          <i class="fas fa-microphone me-2"></i>
+        <h5 class="card-title mb-3 d-flex align-items-center">
+          <HugeiconsIcon :icon="Mic01Icon" class="me-2" />
           Voice Input
         </h5>
 
+
         <!-- Browser Support Check -->
-        <div v-if="!isSupported" class="alert alert-warning">
-          <i class="fas fa-exclamation-triangle me-2"></i>
+        <div v-if="!isSupported" class="alert alert-warning d-flex align-items-center">
+          <HugeiconsIcon :icon="Alert01Icon" class="me-2" />
           Your browser doesn't support voice recognition. Please use Chrome, Edge, or Safari.
         </div>
+
 
         <!-- Recording Controls -->
         <div v-if="isSupported" class="recording-section">
           <!-- Internet Connection Warning -->
-          <div class="alert alert-info mb-3">
-            <i class="fas fa-info-circle me-2"></i>
+          <div class="alert alert-info mb-3 d-flex align-items-center">
+            <HugeiconsIcon :icon="InformationCircleIcon" class="me-2" />
             <strong>Note:</strong> Voice recognition requires an active internet connection to work.
           </div>
+
           <div class="d-flex justify-content-center mb-3">
             <button
               v-if="!isRecording"
               @click="startRecording"
-              class="btn btn-primary btn-lg"
+              class="btn btn-primary btn-lg d-flex align-items-center"
               :disabled="isSubmitting"
             >
-              <i class="fas fa-microphone me-2"></i>
+              <HugeiconsIcon :icon="Mic01Icon" class="me-2" />
               Start Recording
             </button>
+
             <button
               v-else
               @click="stopRecording"
-              class="btn btn-danger btn-lg"
+              class="btn btn-danger btn-lg d-flex align-items-center"
             >
-              <i class="fas fa-stop me-2"></i>
+              <HugeiconsIcon :icon="StopIcon" class="me-2" />
               Stop Recording
             </button>
+
           </div>
 
           <!-- Recording Indicator -->
           <div v-if="isRecording" class="recording-indicator text-center mb-3">
             <div class="pulse-animation">
-              <i class="fas fa-microphone fa-2x text-danger"></i>
+              <HugeiconsIcon :icon="Mic01Icon" size="48" class="text-danger mx-auto" />
             </div>
             <p class="mt-2 text-muted">Listening... Speak now</p>
           </div>
+
 
           <!-- Transcription Display -->
           <div class="transcription-section mb-3">
@@ -61,10 +67,11 @@
             <div v-if="interimText && !transcription" class="text-muted mt-2">
               <small><i>Listening: {{ interimText }}</i></small>
             </div>
-            <small class="text-muted d-block mt-2">
-              <i class="fas fa-lightbulb me-1"></i>
+            <small class="text-muted d-flex align-items-center mt-2">
+              <HugeiconsIcon :icon="Idea01Icon" size="16" class="me-1" />
               Tip: If voice recognition isn't working, you can type your thoughts directly in the text area above.
             </small>
+
           </div>
 
           <!-- Action Buttons -->
@@ -72,49 +79,55 @@
             <button
               v-if="transcription && !isRecording"
               @click="submitTranscription"
-              class="btn btn-success me-2"
+              class="btn btn-success me-2 d-inline-flex align-items-center"
               :disabled="isSubmitting || !transcription.trim()"
             >
               <span v-if="isSubmitting" class="spinner-border spinner-border-sm me-2"></span>
-              <i v-else class="fas fa-save me-2"></i>
+              <HugeiconsIcon v-else :icon="FloppyDiskIcon" class="me-2" />
               {{ isSubmitting ? 'Saving...' : 'Save Entry' }}
             </button>
+
             <button
               v-if="transcription && !isRecording"
               @click="clearTranscription"
-              class="btn btn-secondary me-2"
+              class="btn btn-secondary me-2 d-inline-flex align-items-center"
               :disabled="isSubmitting"
             >
-              <i class="fas fa-redo me-2"></i>
+              <HugeiconsIcon :icon="RefreshIcon" class="me-2" />
               Clear
             </button>
+
             <button
               v-if="!transcription || !isRecording"
               @click="submitTranscription"
-              class="btn btn-success"
+              class="btn btn-success d-inline-flex align-items-center"
               :disabled="isSubmitting || !transcription.trim()"
             >
               <span v-if="isSubmitting" class="spinner-border spinner-border-sm me-2"></span>
-              <i v-else class="fas fa-save me-2"></i>
+              <HugeiconsIcon v-else :icon="FloppyDiskIcon" class="me-2" />
               {{ isSubmitting ? 'Saving...' : 'Save Manual Entry' }}
             </button>
+
           </div>
 
           <!-- Success Message -->
-          <div v-if="successMessage" class="alert alert-success mt-3">
-            <i class="fas fa-check-circle me-2"></i>
+          <div v-if="successMessage" class="alert alert-success mt-3 d-flex align-items-center">
+            <HugeiconsIcon :icon="CheckmarkCircle01Icon" class="me-2" />
             {{ successMessage }}
           </div>
 
+
           <!-- Error Message -->
-          <div v-if="errorMessage" class="alert alert-danger mt-3">
-            <i class="fas fa-exclamation-circle me-2"></i>
+          <div v-if="errorMessage" class="alert alert-danger mt-3 d-flex align-items-center">
+            <HugeiconsIcon :icon="AlertCircleIcon" class="me-2" />
             {{ errorMessage }}
+
             <div v-if="errorMessage.includes('Network') || errorMessage.includes('network')" class="mt-2">
-              <button @click="retryRecording" class="btn btn-sm btn-outline-danger me-2">
-                <i class="fas fa-redo me-1"></i>
+              <button @click="retryRecording" class="btn btn-sm btn-outline-danger me-2 d-inline-flex align-items-center">
+                <HugeiconsIcon :icon="RefreshIcon" size="14" class="me-1" />
                 Retry
               </button>
+
               <small class="text-muted d-block mt-2">
                 You can also type your thoughts manually in the text area above if voice recognition continues to fail.
               </small>
@@ -129,6 +142,20 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
 import { voiceThoughtService } from '../services/voiceThought';
+import { HugeiconsIcon } from '@hugeicons/vue';
+import {
+  Mic01Icon,
+  Alert01Icon,
+  InformationCircleIcon,
+  StopIcon,
+  Idea01Icon,
+  FloppyDiskIcon,
+  RefreshIcon,
+  CheckmarkCircle01Icon,
+  AlertCircleIcon
+} from '@hugeicons/core-free-icons';
+
+
 
 const isSupported = ref(false);
 const isRecording = ref(false);
