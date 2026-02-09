@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=1
+      # Add other environment variables as needed
+    command: python manage.py runserver 0.0.0.0:8000
+
+  frontend:
+    build:
+      context: ./frontend/vue-client
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+
+# Optional: Add a database service if needed
+#  db:
+#    image: postgres:15-alpine
+#    environment:
+#      - POSTGRES_DB=mindshift
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=postgres
