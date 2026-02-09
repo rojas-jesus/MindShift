@@ -228,6 +228,7 @@
 <script setup lang="ts">
 import { ref, onMounted, nextTick } from 'vue'
 import { RouterLink } from 'vue-router'
+import { storeToRefs } from 'pinia'
 import { useDashboardStore } from '../stores/dashboard'
 import Chart from 'chart.js/auto'
 import InspirationalQuote from '../components/InspirationalQuote.vue'
@@ -260,7 +261,7 @@ import {
 const dashboardStore = useDashboardStore()
 const moodChartCanvas = ref<HTMLCanvasElement>()
 
-const { thoughts, mindTools, members, emotionalTemperature, currentMood, moodHistory } = dashboardStore
+const { thoughts, mindTools, members, emotionalTemperature, currentMood, moodHistory } = storeToRefs(dashboardStore)
 const { toggleThought, toggleMindTool, setEmotionalTemperature } = dashboardStore
 
 const iconMap: Record<string, any> = {

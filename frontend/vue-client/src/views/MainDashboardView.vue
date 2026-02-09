@@ -62,7 +62,7 @@
             <div class="d-flex justify-content-between align-items-center mb-3">
               <h4 class="mb-0">Daily Thoughts</h4>
               <RouterLink to="/thought/create" class="btn btn-primary">
-                <HugeiconsIcon :icon="Plus01Icon" class="me-2" />
+                <HugeiconsIcon :icon="Add01Icon" class="me-2" />
                 Add Thought
 
               </RouterLink>

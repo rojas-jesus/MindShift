@@ -72,7 +72,7 @@
                 <button 
                   type="submit" 
                   class="btn btn-primary" 
-                  :disabled="loading || (password && password2 && password !== password2)"
+                  :disabled="!!(loading || (password && password2 && password !== password2))"
                 >
                   <span v-if="loading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
                   {{ loading ? 'Registering...' : 'Register' }}
