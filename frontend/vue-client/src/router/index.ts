@@ -39,6 +39,11 @@ const router = createRouter({
       path: '/thought/create',
       name: 'thought-create',
       component: () => import('../views/ThoughtCreateView.vue')
+    },
+    {
+      path: '/action/create',
+      name: 'action-create',
+      component: () => import('../views/ActionCreateView.vue')
     }
   ]
 })

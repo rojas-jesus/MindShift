@@ -17,29 +17,38 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.http import HttpResponse
+from apps.core.views import VoiceThoughtEntryCreateView, VoiceActionEntryCreateView
 
-from drf_spectacular.views import (
-    SpectacularAPIView,
-    SpectacularSwaggerView,
-    SpectacularRedocView,
-)
+def test_connection(request):
+    return HttpResponse("Backend connection OK")
+
+# from drf_spectacular.views import (
+#     SpectacularAPIView,
+#     SpectacularSwaggerView,
+#     SpectacularRedocView,
+# )
 
 urlpatterns = [
+    path('api/test/', test_connection),
+    path('api/voice/thought/create/', VoiceThoughtEntryCreateView.as_view(), name='top-voice-thought-create'),
+    path('api/voice/action/create/', VoiceActionEntryCreateView.as_view(), name='top-voice-action-create'),
     path('admin/', admin.site.urls),
     path("home/", include("apps.homepage.urls")),
-    path("", include("apps.core.urls")),
+    path("api/", include("apps.core.urls.api_urls")),
+    path("ssr/", include("apps.core.urls.ssr_urls")),
     path("account/", include("apps.account.urls")),
 
     # OpenAPI schema & docs
-    path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
-    path(
-        "api/schema/swagger/",
-        SpectacularSwaggerView.as_view(url_name="schema"),
-        name="swagger-ui",
-    ),
-    path(
-        "api/schema/redoc/",
-        SpectacularRedocView.as_view(url_name="schema"),
-        name="redoc",
-    ),
+    # path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
+    # path(
+    #     "api/schema/swagger/",
+    #     SpectacularSwaggerView.as_view(url_name="schema"),
+    #     name="swagger-ui",
+    # ),
+    # path(
+    #     "api/schema/redoc/",
+    #     SpectacularRedocView.as_view(url_name="schema"),
+    #     name="redoc",
+    # ),
 ]

@@ -1,3 +1,4 @@
+# Reloading server to apply diagnostic changes
 """
 Django settings for config project.
 
@@ -43,7 +44,7 @@ THIRD_PARTY_APPS = [
     "rest_framework_simplejwt",
     "django_filters",
     "corsheaders",
-    "drf_spectacular",
+    # "drf_spectacular",
 ]
 
 DJANGO_APPS = [
@@ -166,7 +167,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    # 'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 # CORS Settings

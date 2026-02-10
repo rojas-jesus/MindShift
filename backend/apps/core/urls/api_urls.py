@@ -30,9 +30,13 @@ from ..views import (
         UserThoughtsTextView,
         AIThoughtsAnalysisView,
         VoiceThoughtEntryCreateView,
+        VoiceActionEntryCreateView,
         )
 
 urlpatterns = [
+    path("voice/thought/create/", VoiceThoughtEntryCreateView.as_view(), name="voice-thought-create"),
+    path("voice/action/create/", VoiceActionEntryCreateView.as_view(), name="voice-action-create"),
+
     path("thoughts/", ThoughtListView.as_view(), name = "thought-list"),
     path("thought/create/", ThoughtCreateView.as_view(), name="thought-create"),
     path("thought/<id>/", ThoughtRetrieveView.as_view(), name="thought-retrieve"),
@@ -53,6 +57,4 @@ urlpatterns = [
 
     path("ai/user-thoughts-text/", UserThoughtsTextView.as_view(), name="ai-user-thoughts-text"), # refactor later
     path("ai/thoughts-analysis/", AIThoughtsAnalysisView.as_view(), name="ai-thoughts-analysis"),
-    
-    path("voice/thought/create/", VoiceThoughtEntryCreateView.as_view(), name="voice-thought-create"),
 ]

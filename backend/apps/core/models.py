@@ -134,3 +134,17 @@ class VoiceThoughtEntry(models.Model):
     
     def __str__(self):
         return f"{self.user.username} - {self.timestamp.strftime('%Y-%m-%d %H:%M')}"
+
+
+class VoiceActionEntry(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    transcription = models.TextField(verbose_name="Transcribed Action Text")
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Voice Action Entry"
+        verbose_name_plural = "Voice Action Entries"
+        ordering = ['-timestamp']
+
+    def __str__(self):
+        return f"{self.user.username} - {self.timestamp.strftime('%Y-%m-%d %H:%M')}"

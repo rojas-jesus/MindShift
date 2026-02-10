@@ -11,6 +11,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         return token
 
     def validate(self, attrs):
+        print(f"DEBUG: Validating login for user: {attrs.get('username')}")
         data = super().validate(attrs)
         # Add extra responses
         data['username'] = self.user.username

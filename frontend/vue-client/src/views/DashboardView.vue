@@ -27,11 +27,16 @@
           <div class="col-12">
             <div class="d-flex justify-content-between align-items-center mb-3">
               <h4 class="mb-0">Daily Thoughts</h4>
-              <RouterLink to="/thought/create" class="btn btn-primary">
-                <HugeiconsIcon :icon="Add01Icon" class="me-2" />
-                Add Thought
-
-              </RouterLink>
+              <div class="d-flex gap-2">
+                <RouterLink to="/thought/create" class="btn btn-primary">
+                  <HugeiconsIcon :icon="Add01Icon" class="me-2" />
+                  Add Thought
+                </RouterLink>
+                <RouterLink to="/action/create" class="btn btn-outline-primary">
+                  <HugeiconsIcon :icon="Add01Icon" class="me-2" />
+                  Add Action
+                </RouterLink>
+              </div>
             </div>
             <div class="row">
               <div class="col-md-3 mb-3" v-for="thought in thoughts" :key="thought.id">

@@ -4,6 +4,7 @@ from .environment import *
 from .ai_thoughts_features import * 
 from .thought import *
 from .voice_thought import *
+from .voice_action import *
 
 
 # SSR
