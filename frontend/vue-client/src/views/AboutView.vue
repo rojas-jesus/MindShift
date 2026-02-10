@@ -1,15 +1,24 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h2>Dashboard</h2>
+          </div>
+          <div class="card-body">
+            <p>Welcome to your dashboard! You are successfully logged in.</p>
+            <div class="alert alert-success">
+              <strong>Success!</strong> Authentication is working correctly.
+            </div>
+            <button class="btn btn-primary" @click="$router.push('/')">Back to Home</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-</style>
+<script setup lang="ts">
+// Dashboard component logic can be added here
+</script>

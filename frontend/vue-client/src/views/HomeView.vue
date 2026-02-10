@@ -15,9 +15,7 @@
         </div>
         
         <div v-else class="d-grid gap-2 d-md-flex justify-content-md-center">
-          <router-link to="/smart-home" class="btn btn-success btn-lg px-4 me-md-2">
-            Smart Home Dashboard
-          </router-link>
+
           <router-link to="/dashboard" class="btn btn-info btn-lg px-4 me-md-2">
             Dashboard
           </router-link>
