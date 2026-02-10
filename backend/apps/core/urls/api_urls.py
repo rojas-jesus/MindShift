@@ -29,13 +29,13 @@ from ..views import (
 
         UserThoughtsTextView,
         AIThoughtsAnalysisView,
-        VoiceThoughtEntryCreateView,
-        VoiceActionEntryCreateView,
+        ThoughtRawCreateView,
+        ActionRawCreateView,
         )
 
 urlpatterns = [
-    path("voice/thought/create/", VoiceThoughtEntryCreateView.as_view(), name="voice-thought-create"),
-    path("voice/action/create/", VoiceActionEntryCreateView.as_view(), name="voice-action-create"),
+    path("thought-raw/create/", ThoughtRawCreateView.as_view(), name="thought-raw-create"),
+    path("action-raw/create/", ActionRawCreateView.as_view(), name="action-raw-create"),
 
     path("thoughts/", ThoughtListView.as_view(), name = "thought-list"),
     path("thought/create/", ThoughtCreateView.as_view(), name="thought-create"),

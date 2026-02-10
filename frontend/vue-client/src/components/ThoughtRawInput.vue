@@ -1,17 +1,19 @@
 <template>
-  <div class="voice-action-input">
+  <div class="voice-thought-input">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title mb-3 d-flex align-items-center">
           <HugeiconsIcon :icon="Mic01Icon" class="me-2" />
-          Voice Input (Actions)
+          Voice Input
         </h5>
+
 
         <!-- Browser Support Check -->
         <div v-if="!isSupported" class="alert alert-warning d-flex align-items-center">
           <HugeiconsIcon :icon="Alert01Icon" class="me-2" />
           Your browser doesn't support voice recognition. Please use Chrome, Edge, or Safari.
         </div>
+
 
         <!-- Recording Controls -->
         <div v-if="isSupported" class="recording-section">
@@ -40,6 +42,7 @@
               <HugeiconsIcon :icon="StopIcon" class="me-2" />
               Stop Recording
             </button>
+
           </div>
 
           <!-- Recording Indicator -->
@@ -47,8 +50,9 @@
             <div class="pulse-animation">
               <HugeiconsIcon :icon="Mic01Icon" size="48" class="text-danger mx-auto" />
             </div>
-            <p class="mt-2 text-muted">Listening... Speak now about your actions.</p>
+            <p class="mt-2 text-muted">Listening... Speak now</p>
           </div>
+
 
           <!-- Transcription Display -->
           <div class="transcription-section mb-3">
@@ -57,7 +61,7 @@
               v-model="transcription"
               class="form-control"
               rows="5"
-              placeholder="Your transcribed action text will appear here, or you can type manually if voice recognition is not working..."
+              placeholder="Your transcribed text will appear here, or you can type manually if voice recognition is not working..."
               :disabled="isRecording"
             ></textarea>
             <div v-if="interimText && !transcription" class="text-muted mt-2">
@@ -65,8 +69,9 @@
             </div>
             <small class="text-muted d-flex align-items-center mt-2">
               <HugeiconsIcon :icon="Idea01Icon" size="16" class="me-1" />
-              Tip: If voice recognition isn't working, you can type your actions directly in the text area above.
+              Tip: If voice recognition isn't working, you can type your thoughts directly in the text area above.
             </small>
+
           </div>
 
           <!-- Action Buttons -->
@@ -79,7 +84,7 @@
             >
               <span v-if="isSubmitting" class="spinner-border spinner-border-sm me-2"></span>
               <HugeiconsIcon v-else :icon="FloppyDiskIcon" class="me-2" />
-              {{ isSubmitting ? 'Saving...' : 'Save Action Entry' }}
+              {{ isSubmitting ? 'Saving...' : 'Save Entry' }}
             </button>
 
             <button
@@ -100,8 +105,9 @@
             >
               <span v-if="isSubmitting" class="spinner-border spinner-border-sm me-2"></span>
               <HugeiconsIcon v-else :icon="FloppyDiskIcon" class="me-2" />
-              {{ isSubmitting ? 'Saving...' : 'Save Manual Action Entry' }}
+              {{ isSubmitting ? 'Saving...' : 'Save Manual Entry' }}
             </button>
+
           </div>
 
           <!-- Success Message -->
@@ -109,6 +115,7 @@
             <HugeiconsIcon :icon="CheckmarkCircle01Icon" class="me-2" />
             {{ successMessage }}
           </div>
+
 
           <!-- Error Message -->
           <div v-if="errorMessage" class="alert alert-danger mt-3 d-flex align-items-center">
@@ -122,7 +129,7 @@
               </button>
 
               <small class="text-muted d-block mt-2">
-                You can also type your actions manually in the text area above if voice recognition continues to fail.
+                You can also type your thoughts manually in the text area above if voice recognition continues to fail.
               </small>
             </div>
           </div>
@@ -134,7 +141,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
-import { voiceActionService } from '../services/voiceAction';
+import { thoughtRawService } from '../services/thoughtRaw';
 import { HugeiconsIcon } from '@hugeicons/vue';
 import {
   Mic01Icon,
@@ -148,6 +155,8 @@ import {
   AlertCircleIcon
 } from '@hugeicons/core-free-icons';
 
+
+
 const isSupported = ref(false);
 const isRecording = ref(false);
 const transcription = ref('');
@@ -159,8 +168,9 @@ const errorMessage = ref('');
 let recognition: any = null;
 
 onMounted(() => {
+  // Check for browser support
   const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-
+  
   if (SpeechRecognition) {
     isSupported.value = true;
     recognition = new SpeechRecognition();
@@ -192,7 +202,7 @@ onMounted(() => {
     recognition.onerror = (event: any) => {
       console.error('Speech recognition error:', event.error);
       isRecording.value = false;
-
+      
       if (event.error === 'no-speech') {
         errorMessage.value = 'No speech detected. Please try again and speak clearly.';
       } else if (event.error === 'audio-capture') {
@@ -200,7 +210,7 @@ onMounted(() => {
       } else if (event.error === 'not-allowed') {
         errorMessage.value = 'Microphone permission denied. Please allow microphone access in your browser settings and refresh the page.';
       } else if (event.error === 'network') {
-        errorMessage.value = 'Network error: Unable to connect to speech recognition service. Please check your internet connection and try again. If the problem persists, you can type your actions manually in the text area below.';
+        errorMessage.value = 'Network error: Unable to connect to speech recognition service. Please check your internet connection and try again. If the problem persists, you can type your thoughts manually in the text area below.';
       } else if (event.error === 'aborted') {
         errorMessage.value = 'Recording was aborted. Please try again.';
       } else if (event.error === 'bad-grammar') {
@@ -224,12 +234,14 @@ onUnmounted(() => {
 
 const startRecording = () => {
   if (!recognition) return;
-
+  
+  // Check if already recording
   if (isRecording.value) {
     return;
   }
-
+  
   try {
+    // Clear previous errors but keep transcription if user wants to edit
     errorMessage.value = '';
     successMessage.value = '';
     interimText.value = '';
@@ -238,6 +250,7 @@ const startRecording = () => {
   } catch (error: any) {
     console.error('Error starting recognition:', error);
     if (error.message && error.message.includes('already started')) {
+      // Recognition already running, just update state
       isRecording.value = true;
     } else {
       errorMessage.value = 'Failed to start recording. Please check your internet connection and try again.';
@@ -262,6 +275,7 @@ const clearTranscription = () => {
 
 const retryRecording = () => {
   errorMessage.value = '';
+  // Wait a moment before retrying
   setTimeout(() => {
     startRecording();
   }, 500);
@@ -278,17 +292,18 @@ const submitTranscription = async () => {
   successMessage.value = '';
 
   try {
-    await voiceActionService.createVoiceAction(transcription.value.trim());
-    successMessage.value = 'Voice action saved successfully!';
+    await thoughtRawService.createThoughtRaw(transcription.value.trim());
+    successMessage.value = 'Raw thought saved successfully!';
     transcription.value = '';
     interimText.value = '';
-
+    
+    // Clear success message after 3 seconds
     setTimeout(() => {
       successMessage.value = '';
     }, 3000);
   } catch (error: any) {
-    console.error('Error saving voice action:', error);
-    errorMessage.value = error.response?.data?.detail || error.message || 'Failed to save voice action. Please try again.';
+    console.error('Error saving raw thought:', error);
+    errorMessage.value = error.response?.data?.detail || error.message || 'Failed to save raw thought. Please try again.';
   } finally {
     isSubmitting.value = false;
   }
@@ -296,7 +311,7 @@ const submitTranscription = async () => {
 </script>
 
 <style scoped>
-.voice-action-input {
+.voice-thought-input {
   max-width: 800px;
   margin: 0 auto;
 }
@@ -341,5 +356,4 @@ const submitTranscription = async () => {
   font-weight: 600;
 }
 </style>
-
 

@@ -36,13 +36,13 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
-      path: '/thought/create',
-      name: 'thought-create',
+      path: '/thought-raw/create',
+      name: 'thought-raw-create',
       component: () => import('../views/ThoughtCreateView.vue')
     },
     {
-      path: '/action/create',
-      name: 'action-create',
+      path: '/action-raw/create',
+      name: 'action-raw-create',
       component: () => import('../views/ActionCreateView.vue')
     }
   ]

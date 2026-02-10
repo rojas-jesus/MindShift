@@ -1,16 +1,16 @@
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import IsAuthenticated
-from ..models import VoiceActionEntry
-from ..serializers import VoiceActionEntrySerializer
+from ..models import ActionRaw
+from ..serializers import ActionRawSerializer
 
 
-class VoiceActionEntryCreateView(CreateAPIView):
-    queryset = VoiceActionEntry.objects.all()
-    serializer_class = VoiceActionEntrySerializer
+class ActionRawCreateView(CreateAPIView):
+    queryset = ActionRaw.objects.all()
+    serializer_class = ActionRawSerializer
     permission_classes = [IsAuthenticated]
 
     def dispatch(self, request, *args, **kwargs):
-        print(f"DEBUG: VoiceActionEntryCreateView hit at {request.path}")
+        print(f"DEBUG: ActionRawCreateView hit at {request.path}")
         return super().dispatch(request, *args, **kwargs)
 
     def perform_create(self, serializer):

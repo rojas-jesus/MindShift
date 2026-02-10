@@ -18,21 +18,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.http import HttpResponse
-from apps.core.views import VoiceThoughtEntryCreateView, VoiceActionEntryCreateView
 
 def test_connection(request):
     return HttpResponse("Backend connection OK")
 
-# from drf_spectacular.views import (
-#     SpectacularAPIView,
-#     SpectacularSwaggerView,
-#     SpectacularRedocView,
-# )
-
 urlpatterns = [
     path('api/test/', test_connection),
-    path('api/voice/thought/create/', VoiceThoughtEntryCreateView.as_view(), name='top-voice-thought-create'),
-    path('api/voice/action/create/', VoiceActionEntryCreateView.as_view(), name='top-voice-action-create'),
     path('admin/', admin.site.urls),
     path("home/", include("apps.homepage.urls")),
     path("api/", include("apps.core.urls.api_urls")),

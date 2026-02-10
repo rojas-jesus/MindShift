@@ -27,15 +27,33 @@
           <div class="col-12">
             <div class="d-flex justify-content-between align-items-center mb-3">
               <h4 class="mb-0">Daily Thoughts</h4>
-              <div class="d-flex gap-2">
-                <RouterLink to="/thought/create" class="btn btn-primary">
-                  <HugeiconsIcon :icon="Add01Icon" class="me-2" />
-                  Add Thought
-                </RouterLink>
-                <RouterLink to="/action/create" class="btn btn-outline-primary">
-                  <HugeiconsIcon :icon="Add01Icon" class="me-2" />
-                  Add Action
-                </RouterLink>
+              <div class="d-flex gap-2 align-items-center">
+                <div class="custom-tooltip-container">
+                  <RouterLink 
+                    to="/thought-raw/create" 
+                    class="btn btn-primary"
+                  >
+                    <HugeiconsIcon :icon="Add01Icon" class="me-2" />
+                    Raw Thought
+                  </RouterLink>
+                  <span class="tooltip-text">Speak freely and save your thought(s) in seconds. Perfect for capturing your flow using just your voice!</span>
+                </div>
+
+                <div class="custom-tooltip-container">
+                  <RouterLink 
+                    to="/action-raw/create" 
+                    class="btn btn-outline-primary"
+                  >
+                    <HugeiconsIcon :icon="Add01Icon" class="me-2" />
+                    Raw Action
+                  </RouterLink>
+                  <span class="tooltip-text">Track your activities instantly. Just record what you did and save everything with one tap!</span>
+                </div>
+
+                <div class="custom-tooltip-container">
+                   <HugeiconsIcon :icon="InformationCircleIcon" size="20" class="text-muted" style="cursor: help;" />
+                   <span class="tooltip-text">"Raw" entries allow for fast, unstructured recording for when you are in a flow.</span>
+                </div>
               </div>
             </div>
             <div class="row">
@@ -146,6 +164,7 @@ import {
   BrainIcon, 
   Add01Icon, 
   Remove01Icon,
+  InformationCircleIcon,
   Sun01Icon,
   FavouriteIcon,
   SmileIcon,
@@ -346,4 +365,49 @@ const getAvatarColor = (id: number) => {
 .support-avatar.blue { background: #3B82F6; }
 .support-avatar.green { background: #10B981; }
 .support-avatar.orange { background: #F59E0B; }
+
+/* Custom Tooltip Styles */
+.custom-tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  width: 220px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  padding: 8px 12px;
+  position: absolute;
+  z-index: 100;
+  bottom: 125%; /* Position above the button */
+  left: 50%;
+  margin-left: -110px;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+  transform: translateY(10px);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  pointer-events: none;
+}
+
+.tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+}
+
+.custom-tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
 </style>

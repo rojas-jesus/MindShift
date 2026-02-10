@@ -41,7 +41,7 @@
               <div class="tab-content">
                 <!-- Voice Input Tab -->
                 <div v-if="activeTab === 'voice'" class="tab-pane fade show active">
-                  <VoiceActionInput />
+                  <ActionRawInput />
                 </div>
 
                 <!-- Manual Form Tab -->
@@ -68,7 +68,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import VoiceActionInput from '../components/VoiceActionInput.vue';
+import ActionRawInput from '../components/ActionRawInput.vue';
 import { HugeiconsIcon } from '@hugeicons/vue';
 import {
   BrainIcon,

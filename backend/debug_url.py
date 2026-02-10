@@ -6,7 +6,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
 django.setup()
 
 try:
-    url = '/api/voice/action/create/'
+    url = '/api/action-raw/create/'
     resolved = resolve(url)
     print(f"URL '{url}' resolves to: {resolved.func.view_class.__name__}")
 except Exception as e:

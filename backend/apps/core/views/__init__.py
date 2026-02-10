@@ -3,8 +3,8 @@ from .facilitator import *
 from .environment import *
 from .ai_thoughts_features import * 
 from .thought import *
-from .voice_thought import *
-from .voice_action import *
+from .thought_raw import *
+from .action_raw import *
 
 
 # SSR

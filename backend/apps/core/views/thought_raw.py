@@ -1,11 +1,11 @@
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import IsAuthenticated
-from ..models import VoiceThoughtEntry
-from ..serializers import VoiceThoughtEntrySerializer
+from ..models import ThoughtRaw
+from ..serializers import ThoughtRawSerializer
 
-class VoiceThoughtEntryCreateView(CreateAPIView):
-    queryset = VoiceThoughtEntry.objects.all()
-    serializer_class = VoiceThoughtEntrySerializer
+class ThoughtRawCreateView(CreateAPIView):
+    queryset = ThoughtRaw.objects.all()
+    serializer_class = ThoughtRawSerializer
     permission_classes = [IsAuthenticated]
     
     def perform_create(self, serializer):
