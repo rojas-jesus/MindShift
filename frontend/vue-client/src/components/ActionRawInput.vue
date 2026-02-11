@@ -16,9 +16,13 @@
         <!-- Recording Controls -->
         <div v-if="isSupported" class="recording-section">
           <!-- Internet Connection Warning -->
-          <div class="alert alert-info mb-3 d-flex align-items-center">
-            <HugeiconsIcon :icon="InformationCircleIcon" class="me-2" />
-            <strong>Note:</strong> Voice recognition requires an active internet connection to work.
+          <!-- Info Alert -->
+          <div class="alert alert-info mb-3 d-flex align-items-start text-start">
+            <HugeiconsIcon :icon="InformationCircleIcon" class="me-2 mt-1" />
+            <div>
+              <strong>Note:</strong> If voice recognition isn't working, you can type your actions directly in the text area above.
+              Also if you are in Windows 10/11, you can also use <strong>Windows button + H</strong>, so you can speak and it's gonna get transcribed.
+            </div>
           </div>
 
           <div class="d-flex justify-content-center mb-3">
@@ -63,18 +67,14 @@
             <div v-if="interimText && !transcription" class="text-muted mt-2">
               <small><i>Listening: {{ interimText }}</i></small>
             </div>
-            <small class="text-muted d-flex align-items-center mt-2">
-              <HugeiconsIcon :icon="Idea01Icon" size="16" class="me-1" />
-              Tip: If voice recognition isn't working, you can type your actions directly in the text area above.
-            </small>
           </div>
 
           <!-- Action Buttons -->
           <div class="action-buttons mb-3">
             <button
-              v-if="transcription && !isRecording"
+              v-if="!isRecording"
               @click="submitTranscription"
-              class="btn btn-success me-2 d-inline-flex align-items-center"
+              class="btn btn-success d-inline-flex align-items-center"
               :disabled="isSubmitting || !transcription.trim()"
             >
               <span v-if="isSubmitting" class="spinner-border spinner-border-sm me-2"></span>
@@ -85,22 +85,11 @@
             <button
               v-if="transcription && !isRecording"
               @click="clearTranscription"
-              class="btn btn-secondary me-2 d-inline-flex align-items-center"
+              class="btn btn-secondary d-inline-flex align-items-center"
               :disabled="isSubmitting"
             >
               <HugeiconsIcon :icon="RefreshIcon" class="me-2" />
               Clear
-            </button>
-
-            <button
-              v-if="!transcription || !isRecording"
-              @click="submitTranscription"
-              class="btn btn-success d-inline-flex align-items-center"
-              :disabled="isSubmitting || !transcription.trim()"
-            >
-              <span v-if="isSubmitting" class="spinner-border spinner-border-sm me-2"></span>
-              <HugeiconsIcon v-else :icon="FloppyDiskIcon" class="me-2" />
-              {{ isSubmitting ? 'Saving...' : 'Save Manual Action Entry' }}
             </button>
           </div>
 

@@ -22,50 +22,72 @@
           </div>
         </div>
 
-        <!-- Daily Thoughts Section -->
-        <div class="row mb-4">
+        <!-- PUT ANY TEXT HERE -->
+        <div class="row mb-2">
+          <div class="col-12 px-4 mb-2">
+            <span class="text-muted small fw-bold">PUT ANY TEXT HERE</span>
+          </div>
+        </div>
+
+        <!-- Row 1: Raw Entry Actions -->
+        <div class="row mb-3">
           <div class="col-12">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <h4 class="mb-0">Daily Thoughts</h4>
-              <div class="d-flex gap-2 align-items-center">
+            <div class="action-row-card p-3">
+              <div class="d-flex gap-3 align-items-center">
                 <div class="custom-tooltip-container">
                   <RouterLink 
                     to="/thought-raw/create" 
-                    class="btn btn-primary"
+                    class="btn btn-primary d-flex align-items-center"
                   >
                     <HugeiconsIcon :icon="Add01Icon" class="me-2" />
                     Raw Thought
                   </RouterLink>
-                  <span class="tooltip-text">Speak freely and save your thought(s) in seconds. Perfect for capturing your flow using just your voice!</span>
+                  <span class="tooltip-text">Speak freely and save your thought(s).</span>
                 </div>
 
                 <div class="custom-tooltip-container">
                   <RouterLink 
                     to="/action-raw/create" 
-                    class="btn btn-outline-primary"
+                    class="btn btn-outline-primary d-flex align-items-center"
                   >
                     <HugeiconsIcon :icon="Add01Icon" class="me-2" />
                     Raw Action
                   </RouterLink>
-                  <span class="tooltip-text">Track your activities instantly. Just record what you did and save everything with one tap!</span>
+                  <span class="tooltip-text">Track your activities instantly.</span>
                 </div>
 
                 <div class="custom-tooltip-container">
                    <HugeiconsIcon :icon="InformationCircleIcon" size="20" class="text-muted" style="cursor: help;" />
-                   <span class="tooltip-text">"Raw" entries allow for fast, unstructured recording for when you are in a flow.</span>
+                   <span class="tooltip-text">"Raw" entries allow for fast recording.</span>
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-3 mb-3" v-for="thought in thoughts" :key="thought.id">
-                <div class="thought-card" :class="{ active: thought.status }">
-                  <div class="card-body text-center">
-                    <HugeiconsIcon :icon="getIcon(thought.icon)" size="32" class="mb-3 mx-auto" />
+          </div>
+        </div>
 
-                    <h6 class="card-title">{{ thought.name }}</h6>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" :checked="thought.status" @change="toggleThought(thought.id)">
-                    </div>
+        <!-- Row 2: Utility Tools (Right Aligned) -->
+        <div class="row mb-4">
+          <div class="col-12">
+            <div class="utility-row-card p-4">
+              <div class="row">
+                <div class="col-md-6 offset-md-6">
+                  <div class="quick-btn-grid">
+                    <button class="quick-btn purple long">
+                      <HugeiconsIcon :icon="Sun01Icon" size="20" class="mb-1" />
+                      <span>Morning Reflection</span>
+                    </button>
+                    <button class="quick-btn purple-light long">
+                      <HugeiconsIcon :icon="FavouriteIcon" size="20" class="mb-1" />
+                      <span>Gratitude</span>
+                    </button>
+                    <button class="quick-btn white long">
+                      <HugeiconsIcon :icon="BrainIcon" size="20" class="mb-1" />
+                      <span>Mental Health</span>
+                    </button>
+                    <button class="quick-btn purple long">
+                      <HugeiconsIcon :icon="FastWindIcon" size="20" class="mb-1" />
+                      <span>Focus</span>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -409,5 +431,70 @@ const getAvatarColor = (id: number) => {
   visibility: visible;
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Panel Cards */
+.action-row-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+.utility-row-card {
+  background: #fdfdfd;
+  border-radius: 20px;
+  border: 1px solid #f1f1f1;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+}
+
+.quick-btn-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.quick-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  border-radius: 12px;
+  border: none;
+  font-size: 0.7rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  min-height: 65px;
+}
+
+.quick-btn.long {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.quick-btn:hover {
+  transform: scale(1.02);
+  filter: brightness(0.95);
+}
+
+.quick-btn.purple {
+  background-color: #8B5CF6;
+  color: white;
+}
+
+.quick-btn.purple-light {
+  background-color: #A78BFA;
+  color: white;
+}
+
+.quick-btn.white {
+  background-color: #f6f8fa;
+  color: #6a6a6a;
+  border: 1px solid #eaedf0;
+}
+
+.quick-btn span {
+  text-align: center;
+  margin-top: 4px;
 }
 </style>
