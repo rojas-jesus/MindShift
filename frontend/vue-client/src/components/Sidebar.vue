@@ -19,7 +19,7 @@ const emit = defineEmits(['toggle'])
 
 const menuItems = [
   { name: 'Dashboard', icon: DashboardIcon, path: '/dashboard' },
-  { name: 'Raw Thoughts', icon: Note01Icon, path: '/thought-raw/create' },
+  { name: 'Thoughts', icon: Note01Icon, path: '/thoughts' },
   { name: 'Raw Actions', icon: ActionIcon, path: '/action-raw/create' },
   { name: 'About', icon: InformationCircleIcon, path: '/about' },
 ]

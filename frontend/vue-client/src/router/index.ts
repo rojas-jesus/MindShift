@@ -36,6 +36,16 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
+      path: '/thoughts',
+      name: 'thoughts',
+      component: () => import('../views/ThoughtsView.vue')
+    },
+    {
+      path: '/thought-raw/list',
+      name: 'thought-raw-list',
+      component: () => import('../views/RawThoughtsListView.vue')
+    },
+    {
       path: '/thought-raw/create',
       name: 'thought-raw-create',
       component: () => import('../views/ThoughtCreateView.vue')

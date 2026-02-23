@@ -29,6 +29,7 @@ urlpatterns = [
     path("api/", include("apps.core.urls.api_urls")),
     path("ssr/", include("apps.core.urls.ssr_urls")),
     path("account/", include("apps.account.urls")),
+    path('', include('django_prometheus.urls')),
 
     # OpenAPI schema & docs
     # path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
