@@ -1,10 +1,9 @@
 import axios from 'axios';
 
-// FORCE LOCALHOST during development to ensure we hit the code we are actually editing.
-// If you want to use Render, you would set this in your .env file, but for now we want local.
-const API_BASE_URL = 'http://localhost:8000';
+// Use environment variable from .env or fallback to localhost:8000
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
-console.log('AUTH_SERVICE_LOADED: Developing against LOCAL backend at', API_BASE_URL);
+console.log('AUTH_SERVICE_LOADED: Using API at', API_BASE_URL);
 
 /**
  * Helper to safely extract the username from the JWT access token payload.
